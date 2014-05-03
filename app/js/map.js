@@ -61,7 +61,7 @@ function initialize() {
 	animation: google.maps.Animation.DROP,
 	map: map,
 	title: buildingname,
-  //icon: 'public/images/nyubuilding.png'
+  icon: 'images/nyubuilding.png'
 	});
 	google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
 	nyu_building_markers[i] = marker;
