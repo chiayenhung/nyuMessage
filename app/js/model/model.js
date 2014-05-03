@@ -33,6 +33,10 @@ var Buildings = function() {
       }
     });
   }
+
+  Buildings.prototype.findById = function (id) {
+    return _.find(this.data, function(building){return building.id == id;});
+  }
 };
 
 var Building = function (data) {
