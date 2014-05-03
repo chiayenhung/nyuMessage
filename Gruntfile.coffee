@@ -29,7 +29,7 @@ module.exports = (grunt) ->
 
     concat:
       js:
-        src: ["#{DEV_PATH}/js/lib/*.js", "#{DEV_PATH}/js/model/*.js", "#{DEV_PATH}/js/*.js"]
+        src: ["#{DEV_PATH}/js/lib/*.js", "#{DEV_PATH}/js/model/*.js", "#{DEV_PATH}/js/components/*.js","#{DEV_PATH}/js/*.js"]
         dest: "#{PRODUCTION_PATH}/js/main.js"
       css:
         src: ["#{DEV_PATH}/css/lib/*.css", "#{DEV_PATH}/css/*.css"]
