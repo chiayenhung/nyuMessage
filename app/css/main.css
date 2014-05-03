@@ -1,4 +1,29 @@
-body, html {
+<<<<<<< HEAD
+html { height: 100% }
+  body { height: 100%; margin: 0; padding: 0 }
+  #map-canvas { height: 100% }
+=======
+
+html {
   margin: 0;
   padding: 0;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  text-align: center;
+}
+
+#map-canvas {
+  max-width: 960px;
+  min-height: 500px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+>>>>>>> 4343afd080ad311ad24ba15bcf22d8c418cb95d9

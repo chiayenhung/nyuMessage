@@ -5,13 +5,13 @@ mongoose = require ('mongoose');
 
 app = express();
 
-// mongodbURL = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mapTag'
+mongodbURL = (process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/nyuMessage')
 
-// mongoose.connect mongodbURL
+mongoose.connect (mongodbURL);
 
 app.configure(function(){
   app.use (express.compress());
-  app.set ('title', "Map Tag");
+  app.set ('title', "NYU Message");
   app.set ('views', "#{__dirname}/pages");
   app.set ('view engine', 'html');
   app.use (express.cookieParser());

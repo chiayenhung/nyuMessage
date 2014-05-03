@@ -31,10 +31,10 @@ module.exports = (grunt) ->
       options: 
         separator: ';'
       js:
-        src: ["#{DEV_PATH}/js/*.js"]
+        src: ["#{DEV_PATH}/js/**/*.js"]
         dest: "#{PRODUCTION_PATH}/js/main.js"
       css:
-        src: ["#{DEV_PATH}/css/*.css"]
+        src: ["#{DEV_PATH}/css/**/*.css"]
         dest: "#{PRODUCTION_PATH}/css/main.css"
 
     express:
@@ -50,10 +50,13 @@ module.exports = (grunt) ->
 
     watch:
       js:
-        files: ["#{DEV_PATH}/js/*.js", "#{DEV_PATH}/js/*/*.js"]
+        files: ["#{DEV_PATH}/js/*.js", "#{DEV_PATH}/js/**/*.js"]
         tasks: ["clean", "copy", "concat"]
       css: 
-        files: ["#{DEV_PATH}/css/*.css", "#{DEV_PATH}/css/*/*.css"]
+        files: ["#{DEV_PATH}/css/*.css", "#{DEV_PATH}/css/**/*.css"]
+        tasks: ["clean", "copy", "concat"]
+      html:
+        files: ["#{DEV_PATH}/*.html", "#{DEV_PATH}/**/*.html"]
         tasks: ["clean", "copy", "concat"]
 
 
