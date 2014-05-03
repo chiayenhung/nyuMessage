@@ -2,6 +2,7 @@ var express = require ('express');
 var mongoose = require ('mongoose');
 
 var datasetController = require ('./controllers/dataset_controller');
+var postController = require ('./controllers/post_controller');
 
 var app = express();
 
@@ -21,7 +22,9 @@ app.configure(function(){
 
   app.get ('/fillData', datasetController.fillData);
 
-  app.get ('/getAll', datasetController.getAll);
+  app.get ('/getDatasets', datasetController.getDatasets);
+
+  app.get ('/getPosts', postController.getPosts);
 
 });
 

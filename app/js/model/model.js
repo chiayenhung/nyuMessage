@@ -4,13 +4,13 @@ var Buildings = function() {
   var self = this;
   this.data = [];
 
-  this.fetch = function(cb) {
+  Buildings.prototype.fetch = function(cb) {
     if (!window.localStorage.buildings) {
       $.ajax({
-        url: 'getAll',
+        url: 'getDatasets',
         method: 'get',
         success: function(response) {
-          populate(response);
+          Buildings.prototype.populate(response);
         },
         error: function(err) {
           console.log (err);
@@ -22,7 +22,8 @@ var Buildings = function() {
     }
   };
 
-  var populate = function (data) {
+  Buildings.prototype.populate = function (data) {
+    self.data = [];
     data.forEach(function(item, index){
       self.data.push(new Building(item));
     });
@@ -36,3 +37,7 @@ var Building = function (data) {
   this.Latitute = data.Latitute;
   this.Longtitue = data.Longtitue;
 }
+
+var buildings = new Buildings();
+
+buildings.fetch();

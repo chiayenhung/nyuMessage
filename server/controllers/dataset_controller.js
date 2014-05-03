@@ -3,7 +3,7 @@ var fs = require ('fs');
 
 var Dataset = require('../models/dataset');
 
-datasetController.getAll = function (req, res) {
+datasetController.getDatasets = function (req, res) {
   Dataset.find({}, function(err, datasets) {
     if (err) {
       res.send (500, err);
