@@ -1,2 +1,2 @@
 var JST = {};
-JST['buildingsList'] = "<li>  <a href='#'>    <%= building_name%>  </a></li>";
+JST['buildingsList'] = "<a href='#' class='list-group-item list-group-item-info'>  <%= building_name%>  <span class='badge'><%= postNum %></span></a>";
