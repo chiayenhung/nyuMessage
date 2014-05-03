@@ -5,9 +5,9 @@ mongoose = require ('mongoose');
 
 app = express();
 
-// mongodbURL = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mapTag'
+mongodbURL = (process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/nyuMessage')
 
-// mongoose.connect mongodbURL
+mongoose.connect (mongodbURL);
 
 app.configure(function(){
   app.use (express.compress());
