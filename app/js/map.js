@@ -1,32 +1,6 @@
 var map;
 
-function HomeControl(controlDiv, map){
-	// Set CSS styles for the DIV containing the control
-	// Setting padding to 5 px will offset the control
-	// from the edge of the map.
-	controlDiv.style.padding = '5px';
 
-	// Set CSS for the control border.
-	var controlUI = document.createElement('div');
-	controlUI.style.backgroundColor = 'white';
-	controlUI.style.borderStyle = 'solid';
-	controlUI.style.borderWidth = '2px';
-	controlUI.style.cursor = 'pointer';
-	controlUI.style.textAlign = 'center';
-	controlUI.title = 'Click to set the map to Home';
-	controlDiv.appendChild(controlUI);
-
-	// Set CSS for the control interior.
-	var controlText = document.createElement('div');
-	controlText.style.fontFamily = 'Arial,sans-serif';
-	controlText.style.fontSize = '12px';
-	controlText.style.paddingLeft = '4px';
-	controlText.style.paddingRight = '4px';
-	controlText.innerHTML = '<strong>Home</strong>';
-	controlUI.appendChild(controlText);
-	google.maps.event.addDomListener(controlUI, 'click', function(){
-	map.setCenter(washingtonSquare);});
-}
 
 
 function initialize() {
@@ -52,20 +26,57 @@ function initialize() {
 	// title: buildingname
 	// });
   var nyu_building_markers = new Array(buildings.data.length);
+  var nyu_infowindows = new Array(buildings.data.length);
   for (var i=0; i<buildings.data.length; i++){
   	
   	var markerlatlng = new google.maps.LatLng(buildings.data[i].Latitute, buildings.data[i].Longtitue);
   	var buildingname = buildings.data[i].building_name;
   	var marker = new google.maps.Marker({
-	position: markerlatlng,
-	animation: google.maps.Animation.DROP,
-	map: map,
-	title: buildingname,
-  icon: 'images/nyubuilding.png'
-	});
-	google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
-	nyu_building_markers[i] = marker;
+      position: markerlatlng,
+      animation: google.maps.Animation.DROP,
+      map: map,
+      title: buildingname,
+      icon: 'images/nyubuilding.png'
+    });
+
+var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">'+buildings.data[i].address+'</h1>'+
+      '<div id="bodyContent">'+
+      '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+      'sandstone rock formation in the southern part of the '+
+      'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+      'south west of the nearest large town, Alice Springs; 450&#160;km '+
+      '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+      'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+      'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+      'Aboriginal people of the area. It has many springs, waterholes, '+
+      'rock caves and ancient paintings. Uluru is listed as a World '+
+      'Heritage Site.</p>'+
+      '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+      'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+      '(last visited June 22, 2009).</p>'+
+      '</div>'+
+      '</div>';
+
+
+
+
+
+    attachMessage(marker, contentString);
+    // var infowindow = new google.maps.InfoWindow({
+    //   content: buildings.data[i].address,
+    //   size: new google.maps.Size(50, 50)});
+
+    // google.maps.event.addListener(marker, 'click', function(){
+    // infowindow.open(map, marker);});
+    // nyu_infowindows[i] = infowindow;
+    google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
+    nyu_building_markers[i] = marker;
 	
+
+
 
 	}
 
@@ -76,8 +87,6 @@ function initialize() {
 	// window.setTimeout(function(){
 	// 	map.panTo(marker.getPosition());
 	// }, 3000);});
-
-	
 
 
 	google.maps.event.addListener(map, 'click', function(event){
@@ -96,13 +105,12 @@ function initialize() {
  //    map.setCenter(washingtonSquare);
  //    infowindow.setContent('Zoom: ' + zoomLevel);
  //  });
-	var homeControlDiv = document.createElement('div');
-	var homeControl = new HomeControl(homeControlDiv, map);
-	homeControlDiv.index = 1
-	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
 
 
 }
+
+
+
 
 function addMarker(){
 
@@ -135,11 +143,11 @@ function placeMarker(location){
 	marker.setTitle('user id');
 	map.setCenter(location);
 	map.setZoom(16);
-	//attachSecretMessage(marker, 'hi, this is a secret')
+	attachMessage(marker, 'hi, this is a secret')
 }
 
 
-function attachSecretMessage(marker, message){
+function attachMessage(marker, message){
 	var infowindow = new google.maps.InfoWindow(
 		{content: message,
 			size: new google.maps.Size(50, 50)});
@@ -148,11 +156,22 @@ function attachSecretMessage(marker, message){
 		infowindow.open(map, marker);
 	})
 }
+
+
+function closeAllInfoWindow(){
+  for (var i=0; i<nyu_infowindows.length; i++){
+    nyu_infowindows[i].close();
+  }
+
+}
 //google.maps.event.addDomListener(window, 'load', initialize);
 
 
 
-
+var closeButton = document.getElementById('closeAll');
+google.maps.event.addDomListener(closeButton, 'click', closeAllInfoWindow);
+var homeButton = document.getElementById('goHome');
+google.maps.event.addDomListener(homeButton, 'click', function(){map.setCenter(washingtonSquare)});
 
 
 
