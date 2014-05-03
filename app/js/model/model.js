@@ -41,6 +41,8 @@ var Building = function (data) {
   this.address = data.address;
   this.Latitute = data.Latitute;
   this.Longtitue = data.Longtitue;
+  this.posts = data.posts || [];
+  this.postNum = this.posts.length;
 }
 
 var buildings = new Buildings();
