@@ -18,5 +18,3 @@ getLocation = function () {
 showPosition = function (position) {
   initialize(position.coords.latitude, position.coords.longitude)();
 }
-
-getLocation();
