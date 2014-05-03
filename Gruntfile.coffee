@@ -1,8 +1,5 @@
 fs = require 'fs'
 
-handle = (data) ->
-  console.log data
-
 module.exports = (grunt) ->
 
   # load external grunt tasks

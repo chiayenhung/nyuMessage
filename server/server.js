@@ -11,7 +11,7 @@ mongoose.connect (mongodbURL);
 
 app.configure(function(){
   app.use (express.compress());
-  app.set ('title', "Map Tag");
+  app.set ('title', "NYU Message");
   app.set ('views', "#{__dirname}/pages");
   app.set ('view engine', 'html');
   app.use (express.cookieParser());
