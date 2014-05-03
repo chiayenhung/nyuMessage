@@ -46,8 +46,9 @@ module.exports = datasetController;
 var read = function (data, cb) {
   Dataset.find( {}, function(err, datasets){
     if (datasets.length <= 0) {
-      for (var i = 1; i < data.length; i++) {
+      for (var i = 0; i < data.length; i++) {
         if (data[i][0] != "") {
+          console.log(data[i]);
           insert(data[i]);      
         }
         if (i >= data.length - 1) {
@@ -62,12 +63,11 @@ var read = function (data, cb) {
 }
 
 var insert = function (data) {
-  var latLong = data[2].split(',');
   var building = new Dataset({
-    building_name: data[0],
-    address: data[1],
-    Latitute: latLong[0],
-    Longtitue: latLong[1]
+    building_name: data.building_name,
+    address: data.address,
+    Latitute: data.Latitute,
+    Longtitue: data.Longtitue
   });
   building.save(function(err, building){
     if (err) {
