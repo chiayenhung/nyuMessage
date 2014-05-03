@@ -1,0 +1,922 @@
+[
+  {
+    "building_name": "Broome St Residence",
+    "address": "400 Broome St",
+    "Latitute": 40.7211,
+    "Longtitue": -73.9974,
+    "_id": "5364f36d6537935e2266941c",
+    "__v": 0
+  },
+  {
+    "building_name": "Butterick Building",
+    "address": "161 Sixth Avenue",
+    "Latitute": 40.7262,
+    "Longtitue": -74.0042,
+    "_id": "5364f36d6537935e2266941d",
+    "__v": 0
+  },
+  {
+    "building_name": "Gramercy Green",
+    "address": "316 Third Avenue",
+    "Latitute": 40.7396,
+    "Longtitue": -73.9828,
+    "_id": "5364f36d6537935e2266941e",
+    "__v": 0
+  },
+  {
+    "building_name": "Greenwich Hotel",
+    "address": "636 Greenwich Street",
+    "Latitute": 40.7317,
+    "Longtitue": -74.0082,
+    "_id": "5364f36d6537935e2266941f",
+    "__v": 0
+  },
+  {
+    "building_name": "Lafayette Street Residence",
+    "address": "80 Lafayette Street",
+    "Latitute": 40.71708,
+    "Longtitue": -74.00173,
+    "_id": "5364f36d6537935e22669420",
+    "__v": 0
+  },
+  {
+    "building_name": "Twenty-sixth st residence",
+    "address": "334 East 26th Street",
+    "Latitute": 40.7393,
+    "Longtitue": -73.9781,
+    "_id": "5364f36d6537935e22669421",
+    "__v": 0
+  },
+  {
+    "building_name": "University Court",
+    "address": "334 East 25th Street",
+    "Latitute": 40.7386,
+    "Longtitue": -73.9784,
+    "_id": "5364f36d6537935e22669422",
+    "__v": 0
+  },
+  {
+    "building_name": "Woolworth Building",
+    "address": "15 Barclay Street",
+    "Latitute": 40.7124,
+    "Longtitue": -74.0086,
+    "_id": "5364f36d6537935e22669423",
+    "__v": 0
+  },
+  {
+    "building_name": "Puck Building",
+    "address": "295 Lafayette Street",
+    "Latitute": 40.7284,
+    "Longtitue": -73.9955,
+    "_id": "5364f36d6537935e22669424",
+    "__v": 0
+  },
+  {
+    "building_name": "Wagner Graduate School of Public Service",
+    "address": "295 Lafayette Street",
+    "Latitute": 40.7284,
+    "Longtitue": -73.9955,
+    "_id": "5364f36d6537935e22669425",
+    "__v": 0
+  },
+  {
+    "building_name": "194, 196 Mercer Street",
+    "address": "194, 196 Mercer Street",
+    "Latitute": 40.7264,
+    "Longtitue": -73.9971,
+    "_id": "5364f36d6537935e22669426",
+    "__v": 0
+  },
+  {
+    "building_name": "Coles Sports and Recreation Center",
+    "address": "181 Mercer Street",
+    "Latitute": 40.7265,
+    "Longtitue": -73.9975,
+    "_id": "5364f36d6537935e22669427",
+    "__v": 0
+  },
+  {
+    "building_name": "Silver Towers",
+    "address": "100, 110 Bleecker Street",
+    "Latitute": 40.7269,
+    "Longtitue": -73.9985,
+    "_id": "5364f36d6537935e22669428",
+    "__v": 0
+  },
+  {
+    "building_name": "Second Street Residence Hall",
+    "address": "1 East Second Street",
+    "Latitute": 40.7256,
+    "Longtitue": -73.9919,
+    "_id": "5364f36d6537935e22669429",
+    "__v": 0
+  },
+  {
+    "building_name": "665 Broadway",
+    "address": "665 Broadway",
+    "Latitute": 40.7274,
+    "Longtitue": -73.9954,
+    "_id": "5364f36d6537935e2266942a",
+    "__v": 0
+  },
+  {
+    "building_name": "Off-Campus Housing",
+    "address": "4 Washington Square Village",
+    "Latitute": 40.7275,
+    "Longtitue": -73.9974,
+    "_id": "5364f36d6537935e2266942b",
+    "__v": 0
+  },
+  {
+    "building_name": "530 La Guardia Place",
+    "address": "530 La Guardia Place",
+    "Latitute": 40.7289,
+    "Longtitue": -73.9989,
+    "_id": "5364f36d6537935e2266942c",
+    "__v": 0
+  },
+  {
+    "building_name": "Washington Square Village, 1-4",
+    "address": "Washington Square Village, 1-4",
+    "Latitute": 40.7288,
+    "Longtitue": -73.9973,
+    "_id": "5364f36d6537935e2266942d",
+    "__v": 0
+  },
+  {
+    "building_name": "Mail Services and Copy/Media Central",
+    "address": "547 La Guardia Place",
+    "Latitute": 40.7288,
+    "Longtitue": 73.9984,
+    "_id": "5364f36d6537935e2266942e",
+    "__v": 0
+  },
+  {
+    "building_name": "Mercer Street Residence",
+    "address": "240 Mercer Street",
+    "Latitute": 40.7279,
+    "Longtitue": -73.9958,
+    "_id": "5364f36d6537935e2266942f",
+    "__v": 0
+  },
+  {
+    "building_name": "561 La Guardia Place",
+    "address": "561 La Guardia Place",
+    "Latitute": 40.7286,
+    "Longtitue": -73.9969,
+    "_id": "5364f36d6537935e22669430",
+    "__v": 0
+  },
+  {
+    "building_name": "D'Agostino Hall",
+    "address": "110 West Third Street",
+    "Latitute": 40.7303,
+    "Longtitue": -73.9999,
+    "_id": "5364f36d6537935e22669431",
+    "__v": 0
+  },
+  {
+    "building_name": "383 Lafayette Street",
+    "address": "383 Lafayette Street",
+    "Latitute": 40.7276,
+    "Longtitue": -73.9931,
+    "_id": "5364f36d6537935e22669432",
+    "__v": 0
+  },
+  {
+    "building_name": "Card Center (ID Card)",
+    "address": "383 Lafayette Street",
+    "Latitute": 40.7276,
+    "Longtitue": -73.9931,
+    "_id": "5364f36d6537935e22669433",
+    "__v": 0
+  },
+  {
+    "building_name": "Silk Building ",
+    "address": "14 East Fourth Street",
+    "Latitute": 40.7282,
+    "Longtitue": -73.9937,
+    "_id": "5364f36d6537935e22669434",
+    "__v": 0
+  },
+  {
+    "building_name": "Courant Institute",
+    "address": "251 Mercer Street",
+    "Latitute": 40.7288,
+    "Longtitue": -73.9958,
+    "_id": "5364f36d6537935e22669435",
+    "__v": 0
+  },
+  {
+    "building_name": "Tisch Hall",
+    "address": "40 West Fourth Street",
+    "Latitute": 40.7293,
+    "Longtitue": -73.9961,
+    "_id": "5364f36d6537935e22669436",
+    "__v": 0
+  },
+  {
+    "building_name": "Gould Plaza",
+    "address": "",
+    "Latitute": 40.72904,
+    "Longtitue": -73.99591,
+    "_id": "5364f36d6537935e22669437",
+    "__v": 0
+  },
+  {
+    "building_name": "Kaufman Management Center",
+    "address": "44 West Fourth Street",
+    "Latitute": 40.7294,
+    "Longtitue": -73.9962,
+    "_id": "5364f36d6537935e22669438",
+    "__v": 0
+  },
+  {
+    "building_name": "Shimkin Hall",
+    "address": "50 West Fourth Street",
+    "Latitute": 40.7295,
+    "Longtitue": -73.9963,
+    "_id": "5364f36d6537935e22669439",
+    "__v": 0
+  },
+  {
+    "building_name": "Jeffrey S. Gould Welcome Center",
+    "address": "50 West Fourth Street",
+    "Latitute": 40.7295,
+    "Longtitue": -73.9963,
+    "_id": "5364f36d6537935e2266943a",
+    "__v": 0
+  },
+  {
+    "building_name": "Schwartz Plaza",
+    "address": "",
+    "Latitute": 40.7296,
+    "Longtitue": -73.9965,
+    "_id": "5364f36d6537935e2266943b",
+    "__v": 0
+  },
+  {
+    "building_name": "Bobst Library",
+    "address": "70 Washington Square South",
+    "Latitute": 40.7296,
+    "Longtitue": -73.9969,
+    "_id": "5364f36d6537935e2266943c",
+    "__v": 0
+  },
+  {
+    "building_name": "Kimmel Center for University Life",
+    "address": "60 Washington Square South",
+    "Latitute": 40.7301,
+    "Longtitue": -73.9979,
+    "_id": "5364f36d6537935e2266943d",
+    "__v": 0
+  },
+  {
+    "building_name": "Skirball Center for the Performing Arts",
+    "address": "60 Washington Square South",
+    "Latitute": 40.7301,
+    "Longtitue": -73.9979,
+    "_id": "5364f36d6537935e2266943e",
+    "__v": 0
+  },
+  {
+    "building_name": "58 Washington Square South",
+    "address": "58 Washington Square South",
+    "Latitute": 40.7301,
+    "Longtitue": -73.9978,
+    "_id": "5364f36d6537935e2266943f",
+    "__v": 0
+  },
+  {
+    "building_name": "Judson Block - Kevorkian Center",
+    "address": "50 Washingtond Square South",
+    "Latitute": 40.7305,
+    "Longtitue": -73.9986,
+    "_id": "5364f36d6537935e22669440",
+    "__v": 0
+  },
+  {
+    "building_name": "Skirball Department",
+    "address": "53 Washington Square South",
+    "Latitute": 40.7305,
+    "Longtitue": -73.9985,
+    "_id": "5364f36d6537935e22669441",
+    "__v": 0
+  },
+  {
+    "building_name": "King Juan Carlos I Center",
+    "address": "53 Washington Square South",
+    "Latitute": 40.7305,
+    "Longtitue": -73.9985,
+    "_id": "5364f36d6537935e22669442",
+    "__v": 0
+  },
+  {
+    "building_name": "Furman Hall",
+    "address": "245 Sullivan Street",
+    "Latitute": 40.7302,
+    "Longtitue": -73.9992,
+    "_id": "5364f36d6537935e22669443",
+    "__v": 0
+  },
+  {
+    "building_name": "Vanderbilt Hall",
+    "address": "40 Washington Square South",
+    "Latitute": 40.7305,
+    "Longtitue": -73.9995,
+    "_id": "5364f36d6537935e22669444",
+    "__v": 0
+  },
+  {
+    "building_name": "133 MacDougal Street",
+    "address": "133 MacDougal Street",
+    "Latitute": 40.7308,
+    "Longtitue": -74,
+    "_id": "5364f36d6537935e22669445",
+    "__v": 0
+  },
+  {
+    "building_name": "Provincetown Playhouse",
+    "address": "133 MacDougal Street",
+    "Latitute": 40.7308,
+    "Longtitue": -74,
+    "_id": "5364f36d6537935e22669446",
+    "__v": 0
+  },
+  {
+    "building_name": "Meyer Blcok, Meyer Hall",
+    "address": "4 Washington Place",
+    "Latitute": 40.7292,
+    "Longtitue": -73.994,
+    "_id": "5364f36d6537935e22669447",
+    "__v": 0
+  },
+  {
+    "building_name": "Meyer Block, Psychology Building",
+    "address": "6 Washington Place",
+    "Latitute": 40.7294,
+    "Longtitue": -73.9946,
+    "_id": "5364f36d6537935e22669448",
+    "__v": 0
+  },
+  {
+    "building_name": "Carlyle Court",
+    "address": "25 Union Square West",
+    "Latitute": 40.7366,
+    "Longtitue": -73.991,
+    "_id": "5364f36d6537935e22669449",
+    "__v": 0
+  },
+  {
+    "building_name": "Coral Towers",
+    "address": "129 Third Avenue",
+    "Latitute": 40.7339,
+    "Longtitue": -78.987,
+    "_id": "5364f36d6537935e2266944a",
+    "__v": 0
+  },
+  {
+    "building_name": "Thirteenth Street Residence Hall",
+    "address": "47 West 13th Street",
+    "Latitute": 40.7367,
+    "Longtitue": -73.9964,
+    "_id": "5364f36d6537935e2266944b",
+    "__v": 0
+  },
+  {
+    "building_name": "University Hall",
+    "address": "110 East 14th Street",
+    "Latitute": 40.7345,
+    "Longtitue": -73.989,
+    "_id": "5364f36d6537935e2266944c",
+    "__v": 0
+  },
+  {
+    "building_name": "Palladium Hall",
+    "address": "140 East 14th Street",
+    "Latitute": 40.7343,
+    "Longtitue": -73.9889,
+    "_id": "5364f36d6537935e2266944d",
+    "__v": 0
+  },
+  {
+    "building_name": "Wasserman Center for Career Development",
+    "address": "133 East 13th Street",
+    "Latitute": 40.733,
+    "Longtitue": -73.9885,
+    "_id": "5364f36d6537935e2266944e",
+    "__v": 0
+  },
+  {
+    "building_name": "113 University Place",
+    "address": "113 University Place",
+    "Latitute": 40.7344,
+    "Longtitue": -73.9221,
+    "_id": "5364f36d6537935e2266944f",
+    "__v": 0
+  },
+  {
+    "building_name": "838 Broadway",
+    "address": "838 Broadway",
+    "Latitute": 40.7338,
+    "Longtitue": -73.911,
+    "_id": "5364f36d6537935e22669450",
+    "__v": 0
+  },
+  {
+    "building_name": "7 East 12th Street",
+    "address": "7 East 12th Street",
+    "Latitute": 40.7345,
+    "Longtitue": -73.9938,
+    "_id": "5364f36d6537935e22669451",
+    "__v": 0
+  },
+  {
+    "building_name": "Casa Italiana Zerilli-Marimo",
+    "address": "24 West 12th Street",
+    "Latitute": 40.735,
+    "Longtitue": -73.9958,
+    "_id": "5364f36d6537935e22669452",
+    "__v": 0
+  },
+  {
+    "building_name": "Founders Hall",
+    "address": "120 East 12th Street",
+    "Latitute": 40.7323,
+    "Longtitue": -73.989,
+    "_id": "5364f36d6537935e22669453",
+    "__v": 0
+  },
+  {
+    "building_name": "Third Avenue North\nResidence Hall",
+    "address": "75 Third Avenue",
+    "Latitute": 40.7317,
+    "Longtitue": -73.9884,
+    "_id": "5364f36d6537935e22669454",
+    "__v": 0
+  },
+  {
+    "building_name": "Rubin Residence Hall",
+    "address": "35 Fifth Avenue",
+    "Latitute": 40.7335,
+    "Longtitue": -73.9554,
+    "_id": "5364f36d6537935e22669455",
+    "__v": 0
+  },
+  {
+    "building_name": "Bronfman Center",
+    "address": "7 East 10th Street",
+    "Latitute": 40.7335,
+    "Longtitue": -73.9946,
+    "_id": "5364f36d6537935e22669456",
+    "__v": 0
+  },
+  {
+    "building_name": "Brittany Residence Hall",
+    "address": "55 East 10th Street",
+    "Latitute": 40.7323,
+    "Longtitue": -73.992,
+    "_id": "5364f36d6537935e22669457",
+    "__v": 0
+  },
+  {
+    "building_name": "Lillian Vernon Creative\nWriters House",
+    "address": "58 West 10th Street",
+    "Latitute": 40.7346,
+    "Longtitue": -73.998,
+    "_id": "5364f36d6537935e22669458",
+    "__v": 0
+  },
+  {
+    "building_name": "Alumni Hall",
+    "address": "33 Third Avenue",
+    "Latitute": 40.7303,
+    "Longtitue": -73.9894,
+    "_id": "5364f36d6537935e22669459",
+    "__v": 0
+  },
+  {
+    "building_name": "Barney Building",
+    "address": "34 Stuyvesant Street",
+    "Latitute": 40.729,
+    "Longtitue": -73.988,
+    "_id": "5364f36d6537935e2266945a",
+    "__v": 0
+  },
+  {
+    "building_name": "13 University Place",
+    "address": "13 University Place",
+    "Latitute": 40.7314,
+    "Longtitue": -73.9949,
+    "_id": "5364f36d6537935e2266945b",
+    "__v": 0
+  },
+  {
+    "building_name": "Cantor Film Center",
+    "address": "36 East Eighth Street",
+    "Latitute": 40.7313,
+    "Longtitue": -73.9945,
+    "_id": "5364f36d6537935e2266945c",
+    "__v": 0
+  },
+  {
+    "building_name": "Deutsches Haus",
+    "address": "42 Washington Mews",
+    "Latitute": 40.7316,
+    "Longtitue": -73.9958,
+    "_id": "5364f36d6537935e2266945d",
+    "__v": 0
+  },
+  {
+    "building_name": "Weinstein Residence Hall",
+    "address": "11 University Place",
+    "Latitute": 40.7313,
+    "Longtitue": -73.9951,
+    "_id": "5364f36d6537935e2266945e",
+    "__v": 0
+  },
+  {
+    "building_name": "10 Astor Place",
+    "address": "10 Astor Place",
+    "Latitute": 40.7301,
+    "Longtitue": -73.9922,
+    "_id": "5364f36d6537935e2266945f",
+    "__v": 0
+  },
+  {
+    "building_name": "Glucksman Ireland House",
+    "address": "1 Washington Mews",
+    "Latitute": 40.7318,
+    "Longtitue": -73.9965,
+    "_id": "5364f36d6537935e22669460",
+    "__v": 0
+  },
+  {
+    "building_name": "Institute of French Studies",
+    "address": "15 Washington Mews",
+    "Latitute": 40.7318,
+    "Longtitue": -73.9963,
+    "_id": "5364f36d6537935e22669461",
+    "__v": 0
+  },
+  {
+    "building_name": "La Maison Française",
+    "address": "16 Washington Mews",
+    "Latitute": 40.7318,
+    "Longtitue": -73.9963,
+    "_id": "5364f36d6537935e22669462",
+    "__v": 0
+  },
+  {
+    "building_name": "Straus Institute for the\nAdvancement of Law\nand Society",
+    "address": "22 Washington Square North",
+    "Latitute": 40.7321,
+    "Longtitue": -73.9981,
+    "_id": "5364f36d6537935e22669463",
+    "__v": 0
+  },
+  {
+    "building_name": "19 Washington Square North–NYU Abu Dhabi",
+    "address": "19 Washington Square North",
+    "Latitute": 40.732,
+    "Longtitue": -73.9976,
+    "_id": "5364f36d6537935e22669464",
+    "__v": 0
+  },
+  {
+    "building_name": "One-half Fifth Avenue",
+    "address": "One-half Fifth Avenue",
+    "Latitute": 40.7315,
+    "Longtitue": -73.9965,
+    "_id": "5364f36d6537935e22669465",
+    "__v": 0
+  },
+  {
+    "building_name": "Silver School of Social Work",
+    "address": "1 Washington Square North",
+    "Latitute": 40.7309,
+    "Longtitue": -73.9957,
+    "_id": "5364f36d6537935e22669466",
+    "__v": 0
+  },
+  {
+    "building_name": "Graduate School of Arts\nand Science",
+    "address": "6 Washington Square North",
+    "Latitute": 40.7313,
+    "Longtitue": -73.9959,
+    "_id": "5364f36d6537935e22669467",
+    "__v": 0
+  },
+  {
+    "building_name": "Rufus D. Smith Hall",
+    "address": "25 Waverly Place",
+    "Latitute": 40.7303,
+    "Longtitue": -73.9948,
+    "_id": "5364f36d6537935e22669468",
+    "__v": 0
+  },
+  {
+    "building_name": "Seventh Street Residence Hall",
+    "address": "40 East Seventh Street",
+    "Latitute": 40.7282,
+    "Longtitue": -73.9987,
+    "_id": "5364f36d6537935e22669469",
+    "__v": 0
+  },
+  {
+    "building_name": "111, 113A Second Avenue",
+    "address": "111, 113A Second Avenue",
+    "Latitute": 40.7278,
+    "Longtitue": -73.9887,
+    "_id": "5364f36d6537935e2266946a",
+    "__v": 0
+  },
+  {
+    "building_name": "Silver Center for Arts and Science",
+    "address": "100 Washington Square East",
+    "Latitute": 40.7304,
+    "Longtitue": -73.9956,
+    "_id": "5364f36d6537935e2266946b",
+    "__v": 0
+  },
+  {
+    "building_name": "Grey Art Gallery",
+    "address": "100 Washington Square East",
+    "Latitute": 40.7304,
+    "Longtitue": -73.9956,
+    "_id": "5364f36d6537935e2266946c",
+    "__v": 0
+  },
+  {
+    "building_name": "Waverly Building",
+    "address": "24 Waverly Place",
+    "Latitute": 40.7303,
+    "Longtitue": -73.9952,
+    "_id": "5364f36d6537935e2266946d",
+    "__v": 0
+  },
+  {
+    "building_name": "Brown Building",
+    "address": "29 Washington Place",
+    "Latitute": 40.73,
+    "Longtitue": -73.9957,
+    "_id": "5364f36d6537935e2266946e",
+    "__v": 0
+  },
+  {
+    "building_name": "Kimball Hall",
+    "address": "246 Greene Street",
+    "Latitute": 40.7302,
+    "Longtitue": -73.995,
+    "_id": "5364f36d6537935e2266946f",
+    "__v": 0
+  },
+  {
+    "building_name": "Torch Club",
+    "address": "18 Waverly Place",
+    "Latitute": 40.7302,
+    "Longtitue": -73.9948,
+    "_id": "5364f36d6537935e22669470",
+    "__v": 0
+  },
+  {
+    "building_name": "Center for Genomics and Systems Biology",
+    "address": "12 Waverly Place",
+    "Latitute": 40.73,
+    "Longtitue": -73.9945,
+    "_id": "5364f36d6537935e22669471",
+    "__v": 0
+  },
+  {
+    "building_name": "285 Mercer Street",
+    "address": "285 Mercer Street",
+    "Latitute": 42.73,
+    "Longtitue": -73.9941,
+    "_id": "5364f36d6537935e22669472",
+    "__v": 0
+  },
+  {
+    "building_name": "715 Broadway",
+    "address": "715 Broadway",
+    "Latitute": 40.7292,
+    "Longtitue": -73.9937,
+    "_id": "5364f36d6537935e22669473",
+    "__v": 0
+  },
+  {
+    "building_name": "721 Broadway",
+    "address": "721 Broadway",
+    "Latitute": 40.7294,
+    "Longtitue": -73.9937,
+    "_id": "5364f36d6537935e22669474",
+    "__v": 0
+  },
+  {
+    "building_name": "1 Washington Place",
+    "address": "1 Washington Place",
+    "Latitute": 40.7291,
+    "Longtitue": -73.9937,
+    "_id": "5364f36d6537935e22669475",
+    "__v": 0
+  },
+  {
+    "building_name": "5 Washington Place",
+    "address": "5 Washington Place",
+    "Latitute": 40.7295,
+    "Longtitue": -73.9946,
+    "_id": "5364f36d6537935e22669476",
+    "__v": 0
+  },
+  {
+    "building_name": "College of Nursing",
+    "address": "726 Broadway",
+    "Latitute": 40.7294,
+    "Longtitue": -73.9932,
+    "_id": "5364f36d6537935e22669477",
+    "__v": 0
+  },
+  {
+    "building_name": "Liberal Studies Program",
+    "address": "726 Broadway",
+    "Latitute": 40.7294,
+    "Longtitue": -73.9932,
+    "_id": "5364f36d6537935e22669478",
+    "__v": 0
+  },
+  {
+    "building_name": "Student Health Center",
+    "address": "726 Broadway",
+    "Latitute": 40.7294,
+    "Longtitue": -73.9932,
+    "_id": "5364f36d6537935e22669479",
+    "__v": 0
+  },
+  {
+    "building_name": "Moses Center for Students with Disabilities",
+    "address": "726 Broadway",
+    "Latitute": 40.7294,
+    "Longtitue": -73.9932,
+    "_id": "5364f36d6537935e2266947a",
+    "__v": 0
+  },
+  {
+    "building_name": "NYU Bookstore",
+    "address": "726 Broadway",
+    "Latitute": 40.7294,
+    "Longtitue": -73.9932,
+    "_id": "5364f36d6537935e2266947b",
+    "__v": 0
+  },
+  {
+    "building_name": "726 Broadway (NYU Housing)",
+    "address": "726 Broadway",
+    "Latitute": 40.7294,
+    "Longtitue": -73.9932,
+    "_id": "5364f36d6537935e2266947c",
+    "__v": 0
+  },
+  {
+    "building_name": "411 Lafayette Street",
+    "address": "411 Lafayette Street",
+    "Latitute": 40.7284,
+    "Longtitue": -73.9924,
+    "_id": "5364f36d6537935e2266947d",
+    "__v": 0
+  },
+  {
+    "building_name": "48 Cooper Square",
+    "address": "48 Cooper Square",
+    "Latitute": 40.7287,
+    "Longtitue": -73.9913,
+    "_id": "5364f36d6537935e2266947e",
+    "__v": 0
+  },
+  {
+    "building_name": "20 Cooper Square",
+    "address": "20 Cooper Square",
+    "Latitute": 40.7294,
+    "Longtitue": -73.9903,
+    "_id": "5364f36d6537935e2266947f",
+    "__v": 0
+  },
+  {
+    "building_name": "Hayden Residence Hall",
+    "address": "33 Washington Square West",
+    "Latitute": 40.7381,
+    "Longtitue": -73.9996,
+    "_id": "5364f36d6537935e22669480",
+    "__v": 0
+  },
+  {
+    "building_name": "Pless Hall",
+    "address": "82 Washington Square East",
+    "Latitute": 40.73,
+    "Longtitue": -73.996,
+    "_id": "5364f36d6537935e22669481",
+    "__v": 0
+  },
+  {
+    "building_name": "Pless Annex",
+    "address": "82 Washington Square East",
+    "Latitute": 40.73,
+    "Longtitue": -73.996,
+    "_id": "5364f36d6537935e22669482",
+    "__v": 0
+  },
+  {
+    "building_name": "East Building",
+    "address": "239 Greene Street",
+    "Latitute": 40.7295,
+    "Longtitue": -73.9956,
+    "_id": "5364f36d6537935e22669483",
+    "__v": 0
+  },
+  {
+    "building_name": "Education Building",
+    "address": "35 West Fourth Street",
+    "Latitute": 40.7293,
+    "Longtitue": -73.9959,
+    "_id": "5364f36d6537935e22669484",
+    "__v": 0
+  },
+  {
+    "building_name": "Faye’s @ the Square",
+    "address": "45 West Fourth Street",
+    "Latitute": 40.7294,
+    "Longtitue": -73.9963,
+    "_id": "5364f36d6537935e22669485",
+    "__v": 0
+  },
+  {
+    "building_name": "Goddard Hall",
+    "address": "79 Washington Square East",
+    "Latitute": 40.7298,
+    "Longtitue": -73.9963,
+    "_id": "5364f36d6537935e22669486",
+    "__v": 0
+  },
+  {
+    "building_name": "25 West Fourth Street",
+    "address": "25 West Fourth Street",
+    "Latitute": 40.7289,
+    "Longtitue": -73.9952,
+    "_id": "5364f36d6537935e22669487",
+    "__v": 0
+  },
+  {
+    "building_name": "240 Greene Street",
+    "address": "240 Greene Street",
+    "Latitute": 40.7296,
+    "Longtitue": -73.9954,
+    "_id": "5364f36d6537935e22669488",
+    "__v": 0
+  },
+  {
+    "building_name": "242 Greene Street",
+    "address": "242 Greene Street",
+    "Latitute": 40.7298,
+    "Longtitue": -73.9953,
+    "_id": "5364f36d6537935e22669489",
+    "__v": 0
+  },
+  {
+    "building_name": "Public Safety",
+    "address": "14 Washington Place",
+    "Latitute": 40.7296,
+    "Longtitue": -73.9951,
+    "_id": "5364f36d6537935e2266948a",
+    "__v": 0
+  },
+  {
+    "building_name": "14A Washington Place",
+    "address": "14A Washington Place",
+    "Latitute": 40.7296,
+    "Longtitue": -73.9951,
+    "_id": "5364f36d6537935e2266948b",
+    "__v": 0
+  },
+  {
+    "building_name": "10 Washington Place",
+    "address": "10 Washington Place",
+    "Latitute": 40.7295,
+    "Longtitue": -73.9948,
+    "_id": "5364f36d6537935e2266948c",
+    "__v": 0
+  },
+  {
+    "building_name": "8 Washington Place",
+    "address": "8 Washington Place",
+    "Latitute": 40.7294,
+    "Longtitue": -73.9946,
+    "_id": "5364f36d6537935e2266948d",
+    "__v": 0
+  },
+  {
+    "building_name": "19 West Fourth Street",
+    "address": "19 West Fourth Street",
+    "Latitute": 40.7289,
+    "Longtitue": -73.9951,
+    "_id": "5364f36d6537935e2266948e",
+    "__v": 0
+  }
+]
