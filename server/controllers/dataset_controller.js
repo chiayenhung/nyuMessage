@@ -4,20 +4,35 @@ var excel = require ('excel');
 
 var Dataset = require('../models/dataset');
 
-datasetController.fillData = function(req, res){
+datasetController.getAll = function (req, res) {
+  Dataset.find({}, function(err, datasets) {
+    if (err) {
+      res.send (500, err);
+    }
+    else if(!datasets) {
+      res.send (404, 'dataset empty');      
+    }
+    else {
+      res.send (datasets);
+    }
+
+  })
+};
+
+datasetController.fillData = function (req, res) {
   var path = __dirname + '/../../doc/NYU_building.xlsx';
   var result = [];
-  excel(path, function(err, data){
+  excel(path, function(err, dataset){
     if (err) {
       res.send (500, err);
     }
     else {
-      if (!data) {
+      if (!dataset) {
         res.send (404, 'dataset empty');
       }
       else {
-        read(data, function(){
-          res.send (data);          
+        read(dataset, function(){
+          res.send (dataset);          
         });
       }
     }
