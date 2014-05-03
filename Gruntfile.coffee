@@ -47,7 +47,6 @@ module.exports = (grunt) ->
           server: './server/server'
           port: 3000    
 
-
     watch:
       js:
         files: ["#{DEV_PATH}/js/*.js", "#{DEV_PATH}/js/**/*.js"]
@@ -58,9 +57,9 @@ module.exports = (grunt) ->
       html:
         files: ["#{DEV_PATH}/*.html", "#{DEV_PATH}/**/*.html"]
         tasks: ["clean", "copy", "concat"]
-
-  grunt.registerTask 'fillData', ->
-    excel = require('excel');
+      grunt:
+        files: ["Gruntfile.coffee"]
+        tasks: ["watch"]
 
   grunt.registerTask 'development', [
     'clean:development'

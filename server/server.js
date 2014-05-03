@@ -1,11 +1,12 @@
-express = require ('express');
-mongoose = require ('mongoose');
+var express = require ('express');
+var mongoose = require ('mongoose');
 
 // userControler = require ('./controlers/userControler')
+var datasetController = require ('./controllers/dataset_controller');
 
-app = express();
+var app = express();
 
-mongodbURL = (process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/nyuMessage')
+var mongodbURL = (process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/nyuMessage')
 
 mongoose.connect (mongodbURL);
 
@@ -18,6 +19,9 @@ app.configure(function(){
   app.use (express.session({secret: '1234567890QWERTY'}));
   app.use (express.bodyParser());
   app.use (express.static("#{__dirname}/../dist/"));
+
+  app.get ('/fillData', datasetController.fillData);
+
 });
 
 // app.configure ->
