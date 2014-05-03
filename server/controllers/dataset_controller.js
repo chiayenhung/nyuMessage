@@ -28,14 +28,21 @@ datasetController.fillData = function(req, res){
 module.exports = datasetController;
 
 var read = function (data, cb) {
-  for (var i = 1; i < data.length; i++) {
-    if (data[i][0] != "") {
-      insert(data[i]);      
+  Dataset.find( {}, function(err, datasets){
+    if (datasets.length <= 0) {
+      for (var i = 1; i < data.length; i++) {
+        if (data[i][0] != "") {
+          insert(data[i]);      
+        }
+        if (i >= data.length - 1) {
+          cb();
+        }
+      }
     }
-    if (i >= data.length - 1) {
+    else {
       cb();
     }
-  }
+  });
 }
 
 var insert = function (data) {
