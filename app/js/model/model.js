@@ -10,22 +10,27 @@ var Buildings = function() {
         url: 'getDatasets',
         method: 'get',
         success: function(response) {
-          Buildings.prototype.populate(response);
+          Buildings.prototype.populate(response, cb);
         },
         error: function(err) {
           console.log (err);
+          cb();
         }
       });
     }
     else {
       console.log("data are ready");
+      cb();
     }
   };
 
-  Buildings.prototype.populate = function (data) {
+  Buildings.prototype.populate = function (data, cb) {
     self.data = [];
     data.forEach(function(item, index){
       self.data.push(new Building(item));
+      if (index >= data.length - 1) {
+        cb();
+      }
     });
   }
 };
@@ -40,4 +45,6 @@ var Building = function (data) {
 
 var buildings = new Buildings();
 
-buildings.fetch();
+buildings.fetch(function() {
+  generateList();
+});
