@@ -59,6 +59,8 @@ module.exports = (grunt) ->
         files: ["#{DEV_PATH}/*.html", "#{DEV_PATH}/**/*.html"]
         tasks: ["clean", "copy", "concat"]
 
+  grunt.registerTask 'fillData', ->
+    excel = require('excel');
 
   grunt.registerTask 'development', [
     'clean:development'
