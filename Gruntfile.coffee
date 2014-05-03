@@ -28,13 +28,11 @@ module.exports = (grunt) ->
 
 
     concat:
-      options: 
-        separator: ';'
       js:
-        src: ["#{DEV_PATH}/js/**/*.js"]
+        src: ["#{DEV_PATH}/js/lib/*.js", "#{DEV_PATH}/js/model/*.js", "#{DEV_PATH}/js/*.js"]
         dest: "#{PRODUCTION_PATH}/js/main.js"
       css:
-        src: ["#{DEV_PATH}/css/**/*.css"]
+        src: ["#{DEV_PATH}/css/lib/*.css", "#{DEV_PATH}/css/*.css"]
         dest: "#{PRODUCTION_PATH}/css/main.css"
 
     express:
@@ -47,7 +45,6 @@ module.exports = (grunt) ->
           server: './server/server'
           port: 3000    
 
-
     watch:
       js:
         files: ["#{DEV_PATH}/js/*.js", "#{DEV_PATH}/js/**/*.js"]
@@ -58,7 +55,9 @@ module.exports = (grunt) ->
       html:
         files: ["#{DEV_PATH}/*.html", "#{DEV_PATH}/**/*.html"]
         tasks: ["clean", "copy", "concat"]
-
+      grunt:
+        files: ["Gruntfile.coffee"]
+        tasks: ["watch"]
 
   grunt.registerTask 'development', [
     'clean:development'
