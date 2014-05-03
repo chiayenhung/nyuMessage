@@ -23,7 +23,6 @@
      "grunt-env": "0.4.0",
      "request": "~2.21.0",
      "request-json": "*",
-     "mongoose": "~3.8.x",
-     "excel": "0.0.5"
+     "mongoose": "~3.8.x"
  }
 }

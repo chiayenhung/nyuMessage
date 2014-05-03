@@ -1,6 +1,5 @@
 var datasetController = {};
 var fs = require ('fs');
-var excel = require ('excel');
 
 var Dataset = require('../models/dataset');
 
@@ -20,19 +19,21 @@ datasetController.getAll = function (req, res) {
 };
 
 datasetController.fillData = function (req, res) {
-  var path = __dirname + '/../../doc/NYU_building.xlsx';
+  var path = __dirname + '/../../doc/getAll.json';
   var result = [];
-  excel(path, function(err, dataset){
+
+  fs.readFile (path, function(err, datasets) {
+    datasets = JSON.parse(datasets);
     if (err) {
       res.send (500, err);
     }
     else {
-      if (!dataset) {
+      if (!datasets) {
         res.send (404, 'dataset empty');
       }
       else {
-        read(dataset, function(){
-          res.send (dataset);          
+        read(datasets, function(){
+          res.send (datasets);          
         });
       }
     }
