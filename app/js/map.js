@@ -29,6 +29,7 @@ function initialize() {
 
   nyu_building_markers = new Array(buildings.data.length);
   nyu_infowindows = new Array(buildings.data.length);
+
   for (var i=0; i<buildings.data.length; i++){
   	var markerlatlng = new google.maps.LatLng(buildings.data[i].Latitute, buildings.data[i].Longtitue);
   	var buildingname = buildings.data[i].building_name;
@@ -341,9 +342,9 @@ function placeMarker(location){
 	marker.setTitle('user id');
 	map.setCenter(location);
 	map.setZoom(16);
-	var contentString = '<div><div id="infobuttons"><button name="remove-marker" class="remove-marker">Remove Marker</button></div><br />'+
-  '<div id="postTitle"><h4>Place:&nbsp&nbsp<input type="text" name="place"></h4></input></div><div id="postContent">'+
-  '<h4>Comment:</h4><textarea rows="4" cols="50" class="submitContent" name="content"></textarea></div><button name="submitMessage" class="submitMessage">Submit</button></div>';
+	var contentString = '<div><div id="infobuttons"><button name="remove-marker" class="remove-marker btn btn-danger">Remove Marker</button></div><br />'+
+  '<div id="postContent">'+
+  '<h4>Comment:</h4><textarea rows="4" cols="50" class="submitContent" name="content"></textarea></div><button name="submitMessage" class="submitMessage btn btn-success">Submit</button></div>';
 
     contentString = $(contentString);
     var infowindow = new google.maps.InfoWindow(
@@ -365,8 +366,10 @@ function placeMarker(location){
 
     google.maps.event.addDomListener(submitBtn, "click", function() {
       infowindow.close();
+      // console.log($(submitBtn).siblings("#postContent").find("textarea").val());
+      var content = $(submitBtn).siblings("#postContent").find("textarea").val();
       infowindow = new google.maps.InfoWindow(
-      {content: 'hi',
+      {content: content,
       size: new google.maps.Size(50, 50)});
 
       google.maps.event.addListener(marker, 'click', function(){
