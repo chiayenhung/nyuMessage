@@ -129,6 +129,7 @@ function addMarker(){
 function attachMarker(marker) {
   google.maps.event.addListener(marker, 'click', function(e){
     console.log(marker.data);
+    marker.setAnimation(google.maps.Animation.BOUNCE);
     // nyu_building_markers[i] = marker;
     // toggleBounce(marker, nyu_building_markers)();
         
