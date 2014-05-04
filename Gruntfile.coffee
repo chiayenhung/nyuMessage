@@ -54,7 +54,7 @@ module.exports = (grunt) ->
         tasks: ["clean", "copy", "concat"]
       html:
         files: ["#{DEV_PATH}/*.html", "#{DEV_PATH}/**/*.html"]
-        tasks: ["clean", "copy", "templates", "concat"]
+        tasks: ["clean", "copy", "concat"]
       grunt:
         files: ["Gruntfile.coffee"]
         tasks: ["watch"]
@@ -67,17 +67,18 @@ module.exports = (grunt) ->
 
     for namespace, filename of templates
       path = "#{__dirname}/#{filename}"
-      content = fs.readFileSync(path, 'utf-8').toString()
-      content = content.replace (new RegExp('\n', 'g')), ''
+      content = fs.readFileSync(path, 'utf8').toString()
+      content = content.replace (new RegExp("\n", 'g')), ''
+      console.log content
       tmplFileContents += "JST['#{namespace}'] = \"#{content}\";\n"
 
-    # console.log tmplFileContents
-    fs.writeFileSync "#{DEV_PATH}/js/components/templates.js", tmplFileContents
+    #console.log tmplFileContents
+    #fs.writeFileSync "#{DEV_PATH}/js/components/templates.js", tmplFileContents
 
   grunt.registerTask 'development', [
     'clean:development'
     'copy:development'
-    'templates'
+    #'templates'
     'concat'
   ]
 
