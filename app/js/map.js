@@ -59,7 +59,6 @@ function initialize() {
         '</div></div>';
     contentString = $(contentString);
     attachMessage(marker, contentString[0]);
-    console.log(nyu_infowindows[i]);
     var postBtn = contentString.find('button.post-message')[0];
     attachPostWindow(marker, postBtn);
     
@@ -133,14 +132,13 @@ function attachMessage(marker, message){
 }
 
 function openPostWindow(marker){
+  var postString = "<form method='get'><div id='postTitle'><h4>Title:&nbsp&nbsp<input type='text' name='title'></h4></input></div><div id='postContent'>"+
+  "<h4>Comment:</h4><textarea rows='4' cols='50' name='content'></textarea></div><input type='submit' value='Submit'></form>"
 
   var postwindow = new google.maps.InfoWindow(
-    { content: 'hi',
+    { content: postString,
       size: new google.maps.Size(50, 50)});
-  (function(){
-    var m = marker;
-    postwindow.open(map, m);
-  })();
+  postwindow.open(map, marker);
   
 
 }
@@ -171,25 +169,9 @@ function placeMarker(location){
 	marker.setTitle('user id');
 	map.setCenter(location);
 	map.setZoom(16);
-	var contentString = '<div><div id="infobuttons" flot="left"><button name="remove-marker" class="remove-marker" title="Remove Marker">Remove Marker</button></div><br />'+
-        '<div id="content">'+
-        '<h1 id="firstHeading" class="firstHeading">'+'NYU Secret'+'</h1>'+
-        '<div id="bodyContent">'+
-        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-        'sandstone rock formation in the southern part of the '+
-        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-        'south west of the nearest large town, Alice Springs; 450&#160;km '+
-        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-        'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-        'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-        'Aboriginal people of the area. It has many springs, waterholes, '+
-        'rock caves and ancient paintings. Uluru is listed as a World '+
-        'Heritage Site.</p>'+
-        '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-        'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-        '(last visited June 22, 2009).</p>'+
-        '</div>'+
-        '</div></div>';
+	var contentString = '<div><div id="infobuttons"><button name="remove-marker" class="remove-marker" title="Remove Marker">Remove Marker</button></div><br />'+'<form method="get"><div id="postTitle"><h4>Title:&nbsp&nbsp<input type="text" name="title"></h4></input></div><div id="postContent">'+
+  '<h4>Comment:</h4><textarea rows="4" cols="50" name="content"></textarea></div><input type="submit" value="Submit"></form></div>';
+
     contentString = $(contentString);
     attachMessage(marker, contentString[0]);
 
