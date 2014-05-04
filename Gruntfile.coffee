@@ -88,3 +88,9 @@ module.exports = (grunt) ->
     'express:development'
     'watch'
   ]
+
+  grunt.registerTask 'production', [
+    'copy:development'
+    'templates'
+    'concat'    
+  ]

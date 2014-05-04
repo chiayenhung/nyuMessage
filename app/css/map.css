@@ -17,5 +17,5 @@ a.like_link {
 
 .post_list li{
   max-height: 50px;
-  overflow: scroll;
+  overflow-y: scroll;
 }

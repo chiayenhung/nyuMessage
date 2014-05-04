@@ -10,17 +10,12 @@ var generateList = function () {
     e.preventDefault();
     $(".list-group-item").removeClass("active");
     $(this).addClass("active");
-    console.log($(this).data("id"));
     var id = $(this).data("id");
     nyu_building_markers.forEach(function(marker, index){
-      // console.log(marker.data.id == id);
       if (marker.data.id == id) {
-        // console.log(marker.data);
         new google.maps.event.trigger( marker, 'click' );
       }
     });
-    // console.log(nyu_building_markers);
-    // nyu_building_markers
   });
 };
 

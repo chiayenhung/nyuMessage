@@ -26,10 +26,6 @@ function initialize() {
 	});
 
 
-	// google.maps.event.addListener(map, 'bounds_changed', function(){
-	// window.setTimeout(function(){
-	// 	map.panTo(marker.getPosition());
-	// }, 3000);});
 
 	google.maps.event.addListener(marker, 'click', function(){
 	map.setZoom(16);
@@ -83,12 +79,6 @@ function attachSecretMessage(marker, message){
 		infowindow.open(map, marker);
 	})
 }
-//google.maps.event.addDomListener(window, 'load', initialize);
-
-
-
-
-
 
 function loadScript() {
   var script = document.createElement('script');
