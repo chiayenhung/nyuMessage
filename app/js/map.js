@@ -101,11 +101,12 @@ var contentString = '<div id="infobuttons" flot="left"><button type="button" id=
 	// });
  //  	infowindow.open(map);
 
- //  	google.maps.event.addListener(map, 'zoom_changed', function() {
- //    var zoomLevel = map.getZoom();
- //    map.setCenter(washingtonSquare);
- //    infowindow.setContent('Zoom: ' + zoomLevel);
- //  });
+  	google.maps.event.addListener(map, 'zoom_changed', function() {
+    var zoomLevel = map.getZoom();
+    // map.setCenter(washingtonSquare);
+    // infowindow.setContent('Zoom: ' + zoomLevel);
+    updateBuildingList(map);
+  });
 
 
 }

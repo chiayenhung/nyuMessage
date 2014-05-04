@@ -38,6 +38,23 @@ var Buildings = function() {
     return _.find(this.data, function(building){return building.id == id;});
   };
 
+  Buildings.prototype.hiding = function (bounds) {
+    $(".building_list a").removeClass('hidden');
+    // console.log (bounds);
+    this.data.forEach(function(building, index){
+      // if (!Buildings.prototype.outbound(building, bounds)) {
+        console.log($('a[data-id=' + building.id + ']').length);
+        $('a[data-id=' + building.id + ']').toggleClass('hidden', Buildings.prototype.outbound(building, bounds));
+      // }
+    });    
+  };
+
+  Buildings.prototype.outbound = function (building, bounds) {
+    var result = (building.Latitute > bounds.latLarge || building.Latitute < bounds.latSmall) || (building.Longtitue > bounds.longLarge || building.Longtitue < bounds.longSamll);
+    // console.log(result);
+    return result;
+  }
+
 };
 
 var Building = function (data) {
