@@ -236,7 +236,7 @@ function attachPostWindow(marker, postBtn) {
 function attachMessage(marker, message){
   var infowindow = new google.maps.InfoWindow(
     {content: message,
-      size: new google.maps.Size(50, 50)});
+      size: new google.maps.Size(100, 100)});
 
   google.maps.event.addListener(marker, 'click', function(){
     infowindow.open(map, marker);
@@ -246,7 +246,7 @@ function attachMessage(marker, message){
 }
 
 function openPostWindow(marker){
-  var postString = "<div id='postboard'><form method='get'><table><tr><td id='postTitle'><h4>Title:&nbsp&nbsp</h4></td><td><input type='text' name='title'></input></td></tr>"+
+  var postString = "<div id='postboard'><form method='get'><table><tr><td id='postTitle'><h4>Place:&nbsp&nbsp</h4></td><td><input type='text' name='title'></input></td></tr>"+
   "<tr><td><h4>Type:&nbsp&nbsp</h4></td><td id='posttype'><select id='type'><option value='Class'>Class</option><option value='Event'>Event</option><option value='Facilities'>Facilities</option>"+
   "<option value='LostFound'>Lost&Found</option><option value='Message'>Message</option><option value='Others'>Others</option></td></tr>"+
   "<tr><td><h4>Comment:&nbsp&nbsp</h4></td><td id='postContent'><textarea rows='4' cols='50' name='content'></textarea></td></tr>"+
@@ -254,7 +254,7 @@ function openPostWindow(marker){
 
   var postwindow = new google.maps.InfoWindow(
     { content: postString,
-      size: new google.maps.Size(50, 50)});
+      size: new google.maps.Size(80, 50)});
   postwindow.open(map, marker);
   
 
@@ -287,8 +287,8 @@ function placeMarker(location){
 	map.setCenter(location);
 	map.setZoom(16);
 	var contentString = '<div><div id="infobuttons"><button name="remove-marker" class="remove-marker">Remove Marker</button></div><br />'+
-  '<div id="postTitle"><h4>Title:&nbsp&nbsp<input type="text" name="title"></h4></input></div><div id="postContent">'+
-  '<h4>Comment:</h4><textarea rows="4" cols="50" class="submitContent" name="content"></textarea></div><button name="submitMessage" class="submitMessage"></button></div>';
+  '<div id="postTitle"><h4>Place:&nbsp&nbsp<input type="text" name="place"></h4></input></div><div id="postContent">'+
+  '<h4>Comment:</h4><textarea rows="4" cols="50" class="submitContent" name="content"></textarea></div><button name="submitMessage" class="submitMessage">Submit</button></div>';
 
     contentString = $(contentString);
     var infowindow = new google.maps.InfoWindow(
@@ -301,8 +301,8 @@ function placeMarker(location){
     
     var removeBtn = contentString.find('button.remove-marker')[0];
     var submitBtn = contentString.find('button.submitMessage')[0];
-    var submitContent = contentString.find('textarea.submitContent')[0].val();
-    console.log(submitContent);
+    //var submitContent = contentString.find('textarea.submitContent')[0].val();
+    //console.log(submitContent);
     // console.log(removeBtn);
     google.maps.event.addDomListener(removeBtn, "click", function() {
       marker.setMap(null);
@@ -311,7 +311,7 @@ function placeMarker(location){
     google.maps.event.addDomListener(submitBtn, "click", function() {
       infowindow.close();
       infowindow = new google.maps.InfoWindow(
-      {content: contentString[0],
+      {content: 'hi',
       size: new google.maps.Size(50, 50)});
 
       google.maps.event.addListener(marker, 'click', function(){
