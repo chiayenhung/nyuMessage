@@ -41,32 +41,37 @@ function initialize() {
       data: buildings.data[i]
     });
 
-    var contentString = '<div><div id="infobuttons" flot="left"><button name="post-message" class="post-message" data-id="' +
-        buildings.data[i].id +
-        '">Post</button></div><br />'+
-        '<div id="content">'+
-        '<h1 id="firstHeading" class="firstHeading">'+'NYU Secret'+'</h1>'+
-        '<div id="bodyContent">'+
-        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-        'sandstone rock formation in the southern part of the '+
-        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-        'south west of the nearest large town, Alice Springs; 450&#160;km '+
-        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-        'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-        'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-        'Aboriginal people of the area. It has many springs, waterholes, '+
-        'rock caves and ancient paintings. Uluru is listed as a World '+
-        'Heritage Site.</p>'+
-        '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-        'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-        '(last visited June 22, 2009).</p>'+
-        '</div>'+
-        '</div></div>';
+    // var contentString = '<div><div id="infobuttons" flot="left"><button name="post-message" class="post-message" data-id="' +
+    //     buildings.data[i].id +
+    //     '">Post</button></div><br />'+
+    //     '<div id="content">'+
+    //     '<h1 id="firstHeading" class="firstHeading">'+'NYU Secret'+'</h1>'+
+    //     '<div id="bodyContent">'+
+    //     '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+    //     'sandstone rock formation in the southern part of the '+
+    //     'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+    //     'south west of the nearest large town, Alice Springs; 450&#160;km '+
+    //     '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+    //     'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+    //     'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+    //     'Aboriginal people of the area. It has many springs, waterholes, '+
+    //     'rock caves and ancient paintings. Uluru is listed as a World '+
+    //     'Heritage Site.</p>'+
+    //     '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+    //     'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+    //     '(last visited June 22, 2009).</p>'+
+    //     '</div>'+
+    //     '</div></div>';
+    var contentString = _.template(JST['infoWindow'], buildings.data[i]);
+
     contentString = $(contentString);
     attachMessage(marker, contentString[0]);
 
     var postBtn = contentString.find('button.post-message')[0];
     attachPostWindow(marker, postBtn);
+
+    var saveBtn = contentString.find('button.saveBtn')[0];
+    attachSave(saveBtn);
     
     // google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
     // nyu_building_markers[i] = marker;
@@ -129,22 +134,22 @@ function initialize() {
 
 
 
-  var panoramioLayer = new google.maps.panoramio.PanoramioLayer();
-  panoramioLayer.setMap(map);
+  // var panoramioLayer = new google.maps.panoramio.PanoramioLayer();
+  // panoramioLayer.setMap(map);
 
-  var photoPanel = document.getElementById('photo-panel');
-  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(photoPanel);
+  // var photoPanel = document.getElementById('photo-panel');
+  // map.controls[google.maps.ControlPosition.RIGHT_TOP].push(photoPanel);
 
-  google.maps.event.addListener(panoramioLayer, 'click', function(photo) {
-    var li = document.createElement('li');
-    var link = document.createElement('a');
-    link.innerHTML = photo.featureDetails.title + ': ' +
-        photo.featureDetails.author;
-    link.setAttribute('href', photo.featureDetails.url);
-    li.appendChild(link);
-    photoPanel.appendChild(li);
-    photoPanel.style.display = 'block';
-  });
+  // google.maps.event.addListener(panoramioLayer, 'click', function(photo) {
+  //   var li = document.createElement('li');
+  //   var link = document.createElement('a');
+  //   link.innerHTML = photo.featureDetails.title + ': ' +
+  //       photo.featureDetails.author;
+  //   link.setAttribute('href', photo.featureDetails.url);
+  //   li.appendChild(link);
+  //   photoPanel.appendChild(li);
+  //   photoPanel.style.display = 'block';
+  // });
 
 
 	// var infowindow = new google.maps.InfoWindow({
@@ -161,7 +166,6 @@ function initialize() {
   });
 
   google.maps.event.addListener(map, 'center_changed', function() {
-    // console.log("center_changed");
     updateBuildingList(map);
   });
 
@@ -192,7 +196,13 @@ function showPosition(position)
 
   }
 
-
+function attachSave(saveBtn) {
+  $(saveBtn).click(function(e){
+    $infowindow = $(this).parents(".info_window_container");
+    $infowindow.find(".post_list").slideDown();
+    $infowindow.find(".add_post").slideUp();
+  });
+}
 
 
 function attachMarker(marker) {
@@ -206,9 +216,15 @@ function attachMarker(marker) {
 }
 
 function attachPostWindow(marker, postBtn) {
-  google.maps.event.addDomListener(postBtn, "click", function() {
-    // console.log($(this).data('id'));
-    openPostWindow(marker);
+  // google.maps.event.addDomListener(postBtn, "click", function() {
+  //   // console.log($(this).data('id'));
+  //   openPostWindow(marker);
+  // });
+  $(postBtn).click(function(e){
+    $infowindow = $(this).parents(".info_window_container");
+    $infowindow.find(".post_list").slideUp();
+    $infowindow.find(".add_post").slideDown();
+
   });
 }
 
