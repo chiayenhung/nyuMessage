@@ -1,8 +1,7 @@
-// $(document).ready(function(){
-var map;
-initialize();
-function initialize() {
 
+var map;
+
+function initialize() {
 
   var washingtonSquare = new google.maps.LatLng(40.730823,-73.997332)
   var mapOptions = {
@@ -19,7 +18,15 @@ function initialize() {
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
+
+  
+
+
   getUserLocation();
+
+ 
+
+
   var nyu_building_markers = new Array(buildings.data.length);
   var nyu_infowindows = new Array(buildings.data.length);
   for (var i=0; i<buildings.data.length; i++){
@@ -65,22 +72,7 @@ function initialize() {
     // nyu_building_markers[i] = marker;
 
     attachMarker(marker);
-    // google.maps.event.addListener(marker, 'click', function(e){
-    //   console.log(e);
-    //   nyu_building_markers[i] = marker;
-    //   toggleBounce(marker, nyu_building_markers)();
-          
-    // });
-
-
-    // var infowindow = new google.maps.InfoWindow({
-    //   content: buildings.data[i].address,
-    //   size: new google.maps.Size(50, 50)});
-
-    // google.maps.event.addListener(marker, 'click', function(){
-    // infowindow.open(map, marker);});
-    // nyu_infowindows[i] = infowindow;
-
+  
 
 	}
 
@@ -92,6 +84,44 @@ function initialize() {
 	// 	map.panTo(marker.getPosition());
 	// }, 3000);});
 
+   
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  var searchBox = new google.maps.places.SearchBox(input);
+  google.maps.event.addListener(searchBox, 'places_changed', function() {
+    var places = searchBox.getPlaces();
+    search_markers = [];
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0, place; place = places[i]; i++) {
+      var image = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
+      // Create a marker for each place.
+      var search_marker = new google.maps.Marker({
+        map: map,
+        icon: image,
+        title: place.name,
+        position: place.geometry.location
+      });
+
+      search_markers.push(search_marker);
+      bounds.extend(place.geometry.location);
+    }
+
+    map.fitBounds(bounds);
+    });
+
+    // Bias the SearchBox results towards places that are within the bounds of the
+    // current map's viewport.
+    google.maps.event.addListener(map, 'bounds_changed', function() {
+      var bounds = map.getBounds();
+      searchBox.setBounds(bounds);
+    });
 
 	google.maps.event.addListener(map, 'rightclick', function(event){
 		placeMarker(event.latLng);
@@ -253,7 +283,7 @@ google.maps.event.addDomListener(homeButton, 'click', function(){map.setCenter(w
 function loadScript() {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&' +
+  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places&' +
       'callback=initialize';
   document.body.appendChild(script);
 }
