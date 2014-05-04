@@ -1,12 +1,12 @@
 
 #map-canvas {
   max-width: 80%;
-  min-height: 500px;
+  min-height: 700px;
 }
 
 .sidebar {
   width: 20%;
-  height: 500px;
+  height: 700px;
   overflow: scroll;
 }
 
@@ -54,4 +54,34 @@
         font-size: 13px;
         font-weight: 300;
       }
-      
+
+       #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+#photo-panel {
+  background: #fff;
+  padding: 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 300px;
+  max-height: 300px;
+  font-size: 14px;
+  font-family: Arial;
+  border: 1px solid #ccc;
+  box-shadow: -2px 2px 2px rgba(33, 33, 33, 0.4);
+  display: none;
+}
+#filter {
+        padding: 5px 10px;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-top: 0;
+      }
+

@@ -128,6 +128,25 @@ function initialize() {
 	});
 
 
+
+  var panoramioLayer = new google.maps.panoramio.PanoramioLayer();
+  panoramioLayer.setMap(map);
+
+  var photoPanel = document.getElementById('photo-panel');
+  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(photoPanel);
+
+  google.maps.event.addListener(panoramioLayer, 'click', function(photo) {
+    var li = document.createElement('li');
+    var link = document.createElement('a');
+    link.innerHTML = photo.featureDetails.title + ': ' +
+        photo.featureDetails.author;
+    link.setAttribute('href', photo.featureDetails.url);
+    li.appendChild(link);
+    photoPanel.appendChild(li);
+    photoPanel.style.display = 'block';
+  });
+
+
 	// var infowindow = new google.maps.InfoWindow({
  //    content: 'Change the zoom level',
  //    position: washingtonSquare
@@ -283,6 +302,8 @@ google.maps.event.addDomListener(homeButton, 'click', function(){map.setCenter(w
 function loadScript() {
   var script = document.createElement('script');
   script.type = 'text/javascript';
+  // script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places,panoramio&' +
+  //     'callback=initialize';
   script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places&' +
       'callback=initialize';
   document.body.appendChild(script);

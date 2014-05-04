@@ -226,8 +226,8 @@
   {
     "building_name": "Kaufman Management Center",
     "address": "44 West Fourth Street",
-    "Latitute": 40.7294,
-    "Longtitue": -73.9962,
+    "Latitute": 40.728877,
+    "Longtitue": -73.996288,
     "_id": "5364f36d6537935e22669438",
     "__v": 0
   },
@@ -896,7 +896,7 @@
     "__v": 0
   },
   {
-    "building_name": "10 Washington Place",
+    "building_name": "Dept. of Linguistics",
     "address": "10 Washington Place",
     "Latitute": 40.7295,
     "Longtitue": -73.9948,
@@ -912,11 +912,19 @@
     "__v": 0
   },
   {
-    "building_name": "19 West Fourth Street",
+    "building_name": "Econ. NYU",
     "address": "19 West Fourth Street",
     "Latitute": 40.7289,
     "Longtitue": -73.9951,
     "_id": "5364f36d6537935e2266948e",
+    "__v": 0
+  },
+  {
+    "building_name": "Jacobs Academic Building",
+    "address": "6 Metrotech Center",
+    "Latitute": 40.694074,
+    "Longtitue": -73.986932,
+    "_id": "5364f36d6537935e2266948f",
     "__v": 0
   }
 ]
