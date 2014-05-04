@@ -32,11 +32,24 @@ var Buildings = function() {
         cb();
       }
     });
-  }
+  };
 
   Buildings.prototype.findById = function (id) {
     return _.find(this.data, function(building){return building.id == id;});
+  };
+
+  Buildings.prototype.hiding = function (bounds) {
+    $(".building_list a").removeClass('hidden');
+    this.data.forEach(function(building, index){
+        $('a[data-id=' + building.id + ']').toggleClass('hidden', Buildings.prototype.outbound(building, bounds));
+    });    
+  };
+
+  Buildings.prototype.outbound = function (building, bounds) {
+    var result = (building.Latitute > bounds.latLarge || building.Latitute < bounds.latSmall) || (building.Longtitue > bounds.longLarge || building.Longtitue < bounds.longSamll);
+    return result;
   }
+
 };
 
 var Building = function (data) {
@@ -47,10 +60,38 @@ var Building = function (data) {
   this.Longtitue = data.Longtitue;
   this.posts = data.posts || [];
   this.postNum = this.posts.length;
+
+  Building.prototype.update = function () {
+    var data = {
+      _id: this.id,
+      building_name: this.building_name,
+      address: this.address,
+      Latitute: this.Latitute,
+      Longtitue: this.Longtitue,
+      posts: this.posts
+    };
+    $.ajax({
+      url: 'update',
+      method: 'put',
+      data: data,
+      dataType: 'json',
+      success: function(response) {
+        console.log (response);
+      },
+      error: function(response) {
+        console.log (response);
+      },
+    });
+  };
 }
 
 var buildings = new Buildings();
 
 buildings.fetch(function() {
   generateList();
+  $(".list-group-item").click(function(e){
+    e.preventDefault();
+    $(".list-group-item").removeClass("active");
+    $(this).addClass("active");
+  });
 });

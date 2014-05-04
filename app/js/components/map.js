@@ -53,6 +53,7 @@ function initialize() {
     var zoomLevel = map.getZoom();
     map.setCenter(washingtonSquare);
     infowindow.setContent('Zoom: ' + zoomLevel);
+    updateBuildingList(zoomLevel); 
   });
 
 

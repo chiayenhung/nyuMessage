@@ -17,7 +17,6 @@ function initialize() {
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
-
  //  var marker = new google.maps.Marker({
 	// position: washingtonSquare,
 	// map: map,
@@ -59,6 +58,7 @@ function initialize() {
         '</div></div>';
     contentString = $(contentString);
     attachMessage(marker, contentString[0]);
+
     var postBtn = contentString.find('button.post-message')[0];
     attachPostWindow(marker, postBtn);
     
@@ -98,11 +98,17 @@ function initialize() {
 	// });
  //  	infowindow.open(map);
 
- //  	google.maps.event.addListener(map, 'zoom_changed', function() {
- //    var zoomLevel = map.getZoom();
- //    map.setCenter(washingtonSquare);
- //    infowindow.setContent('Zoom: ' + zoomLevel);
- //  });
+	google.maps.event.addListener(map, 'zoom_changed', function() {
+    var zoomLevel = map.getZoom();
+    // map.setCenter(washingtonSquare);
+    // infowindow.setContent('Zoom: ' + zoomLevel);
+    updateBuildingList(map);
+  });
+
+  google.maps.event.addListener(map, 'center_changed', function() {
+    // console.log("center_changed");
+    updateBuildingList(map);
+  });
 
 
 }
@@ -114,7 +120,7 @@ function addMarker(){
 
 function attachPostWindow(marker, postBtn) {
   google.maps.event.addDomListener(postBtn, "click", function() {
-    console.log($(this).data('id'));
+    // console.log($(this).data('id'));
     openPostWindow(marker);
   });
 }
@@ -176,7 +182,7 @@ function placeMarker(location){
     attachMessage(marker, contentString[0]);
 
     var removeBtn = contentString.find('button.remove-marker')[0];
-    console.log(removeBtn);
+    // console.log(removeBtn);
     google.maps.event.addDomListener(removeBtn, "click", function() {
       marker.setMap(null);
     });
