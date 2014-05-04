@@ -27,8 +27,8 @@ function initialize() {
  
 
 
-  var nyu_building_markers = new Array(buildings.data.length);
-  var nyu_infowindows = new Array(buildings.data.length);
+  nyu_building_markers = new Array(buildings.data.length);
+  nyu_infowindows = new Array(buildings.data.length);
   for (var i=0; i<buildings.data.length; i++){
   	var markerlatlng = new google.maps.LatLng(buildings.data[i].Latitute, buildings.data[i].Longtitue);
   	var buildingname = buildings.data[i].building_name;
