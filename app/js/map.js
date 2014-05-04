@@ -32,12 +32,18 @@ function initialize() {
   for (var i=0; i<buildings.data.length; i++){
   	var markerlatlng = new google.maps.LatLng(buildings.data[i].Latitute, buildings.data[i].Longtitue);
   	var buildingname = buildings.data[i].building_name;
-  	var marker = new google.maps.Marker({
+  	var buildingimg = { url: 'images/nyubuilding1.png',
+    // This marker is 20 pixels wide by 32 pixels tall.
+    size: new google.maps.Size(30, 30)
+  };
+
+
+    var marker = new google.maps.Marker({
       position: markerlatlng,
       animation: google.maps.Animation.DROP,
       map: map,
       title: buildingname,
-      icon: 'images/nyubuilding.png',
+      icon: buildingimg,
       data: buildings.data[i]
     });
 
@@ -68,8 +74,8 @@ function initialize() {
     var postBtn = contentString.find('button.post-message')[0];
     attachPostWindow(marker, postBtn);
     
-    // google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
-    // nyu_building_markers[i] = marker;
+    google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
+    nyu_building_markers[i] = marker;
 
     attachMarker(marker);
   
@@ -129,22 +135,22 @@ function initialize() {
 
 
 
-  var panoramioLayer = new google.maps.panoramio.PanoramioLayer();
-  panoramioLayer.setMap(map);
+  // var panoramioLayer = new google.maps.panoramio.PanoramioLayer();
+  // panoramioLayer.setMap(map);
 
-  var photoPanel = document.getElementById('photo-panel');
-  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(photoPanel);
+  // var photoPanel = document.getElementById('photo-panel');
+  // map.controls[google.maps.ControlPosition.RIGHT_TOP].push(photoPanel);
 
-  google.maps.event.addListener(panoramioLayer, 'click', function(photo) {
-    var li = document.createElement('li');
-    var link = document.createElement('a');
-    link.innerHTML = photo.featureDetails.title + ': ' +
-        photo.featureDetails.author;
-    link.setAttribute('href', photo.featureDetails.url);
-    li.appendChild(link);
-    photoPanel.appendChild(li);
-    photoPanel.style.display = 'block';
-  });
+  // google.maps.event.addListener(panoramioLayer, 'click', function(photo) {
+  //   var li = document.createElement('li');
+  //   var link = document.createElement('a');
+  //   link.innerHTML = photo.featureDetails.title + ': ' +
+  //       photo.featureDetails.author;
+  //   link.setAttribute('href', photo.featureDetails.url);
+  //   li.appendChild(link);
+  //   photoPanel.appendChild(li);
+  //   photoPanel.style.display = 'block';
+  // });
 
 
 	// var infowindow = new google.maps.InfoWindow({
@@ -177,6 +183,7 @@ function getUserLocation()
     }
   else{alert("Geolocation is not supported by this browser.");}
   }
+
 function showPosition(position)
   {
     var userlatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -185,7 +192,7 @@ function showPosition(position)
       animation: google.maps.Animation.BOUNCE,
       map: map,
       title: "You are here.",
-      icon: 'images/user.png'
+      icon: 'images/user1.png'
     });
 
 
@@ -199,8 +206,6 @@ function attachMarker(marker) {
   google.maps.event.addListener(marker, 'click', function(e){
     console.log(marker.data);
     marker.setAnimation(google.maps.Animation.BOUNCE);
-    // nyu_building_markers[i] = marker;
-    // toggleBounce(marker, nyu_building_markers)();
         
   });
 }
@@ -265,17 +270,40 @@ function placeMarker(location){
 	marker.setTitle('user id');
 	map.setCenter(location);
 	map.setZoom(16);
-	var contentString = '<div><div id="infobuttons"><button name="remove-marker" class="remove-marker" title="Remove Marker">Remove Marker</button></div><br />'+'<form method="get"><div id="postTitle"><h4>Title:&nbsp&nbsp<input type="text" name="title"></h4></input></div><div id="postContent">'+
-  '<h4>Comment:</h4><textarea rows="4" cols="50" name="content"></textarea></div><input type="submit" value="Submit"></form></div>';
+	var contentString = '<div><div id="infobuttons"><button name="remove-marker" class="remove-marker">Remove Marker</button></div><br />'+
+  '<div id="postTitle"><h4>Title:&nbsp&nbsp<input type="text" name="title"></h4></input></div><div id="postContent">'+
+  '<h4>Comment:</h4><textarea rows="4" cols="50" class="submitContent" name="content"></textarea></div><button name="submitMessage" class="submitMessage"></button></div>';
 
     contentString = $(contentString);
-    attachMessage(marker, contentString[0]);
+    var infowindow = new google.maps.InfoWindow(
+    {content: contentString[0],
+      size: new google.maps.Size(50, 50)});
+      google.maps.event.addListener(marker, 'click', function(){
+      infowindow.open(map, marker);
+    })
 
+    
     var removeBtn = contentString.find('button.remove-marker')[0];
+    var submitBtn = contentString.find('button.submitMessage')[0];
+    var submitContent = contentString.find('textarea.submitContent')[0].val();
+    console.log(submitContent);
     // console.log(removeBtn);
     google.maps.event.addDomListener(removeBtn, "click", function() {
       marker.setMap(null);
     });
+
+    google.maps.event.addDomListener(submitBtn, "click", function() {
+      infowindow.close();
+      infowindow = new google.maps.InfoWindow(
+      {content: contentString[0],
+      size: new google.maps.Size(50, 50)});
+
+      google.maps.event.addListener(marker, 'click', function(){
+      infowindow.open(map, marker);
+    })
+
+    });
+
 
     google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
     
@@ -304,7 +332,7 @@ function loadScript() {
   script.type = 'text/javascript';
   // script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places,panoramio&' +
   //     'callback=initialize';
-  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places&' +
+  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places,panoramio&' +
       'callback=initialize';
   document.body.appendChild(script);
 }
