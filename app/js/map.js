@@ -2,6 +2,8 @@
 var map;
 initialize();
 function initialize() {
+
+
   var washingtonSquare = new google.maps.LatLng(40.730823,-73.997332)
   var mapOptions = {
     zoom: 12,
@@ -17,11 +19,7 @@ function initialize() {
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
- //  var marker = new google.maps.Marker({
-	// position: washingtonSquare,
-	// map: map,
-	// title: buildingname
-	// });
+  getUserLocation();
   var nyu_building_markers = new Array(buildings.data.length);
   var nyu_infowindows = new Array(buildings.data.length);
   for (var i=0; i<buildings.data.length; i++){
@@ -122,9 +120,31 @@ function initialize() {
 }
 
 
-function addMarker(){
+function getUserLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{alert("Geolocation is not supported by this browser.");}
+  }
+function showPosition(position)
+  {
+    var userlatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var user_marker = new google.maps.Marker({
+      position: userlatlng,
+      animation: google.maps.Animation.BOUNCE,
+      map: map,
+      title: "You are here.",
+      icon: 'images/user.png'
+    });
 
-}
+
+
+  }
+
+
+
 
 function attachMarker(marker) {
   google.maps.event.addListener(marker, 'click', function(e){
@@ -156,12 +176,11 @@ function attachMessage(marker, message){
 }
 
 function openPostWindow(marker){
-  var postString = "<div id='postboard'><form method='get'><div id='postTitle'><h4>Title:&nbsp&nbsp</h4><input type='text' name='title'></input></div>"+
-  "<div id='postContent'>"+
-  "<h4>Comment:</h4><select id='type'><option value='Class'>Class</option><option value='Event'>Event</option><option value='Facilities'>Facilities</option>"+
-  "<option value='LostFound'>Lost&Found</option><option value='Message'>Message</option>"+
-  "<textarea rows='4' cols='50' name='content'></textarea></div>"+
-  "<input type='submit' value='Submit'></form></div>"
+  var postString = "<div id='postboard'><form method='get'><table><tr><td id='postTitle'><h4>Title:&nbsp&nbsp</h4></td><td><input type='text' name='title'></input></td></tr>"+
+  "<tr><td><h4>Type:&nbsp&nbsp</h4></td><td id='posttype'><select id='type'><option value='Class'>Class</option><option value='Event'>Event</option><option value='Facilities'>Facilities</option>"+
+  "<option value='LostFound'>Lost&Found</option><option value='Message'>Message</option><option value='Others'>Others</option></td></tr>"+
+  "<tr><td><h4>Comment:&nbsp&nbsp</h4></td><td id='postContent'><textarea rows='4' cols='50' name='content'></textarea></td></tr>"+
+  "<tr><td></td><td align='right'><input type='submit' value='Submit'></td></tr></table></form></div>";
 
   var postwindow = new google.maps.InfoWindow(
     { content: postString,
