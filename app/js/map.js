@@ -32,7 +32,8 @@ function initialize() {
       animation: google.maps.Animation.DROP,
       map: map,
       title: buildingname,
-      icon: 'images/nyubuilding.png'
+      icon: 'images/nyubuilding.png',
+      data: buildings.data[i]
     });
 
     var contentString = '<div><div id="infobuttons" flot="left"><button name="post-message" class="post-message" data-id="' +
@@ -62,9 +63,16 @@ function initialize() {
     var postBtn = contentString.find('button.post-message')[0];
     attachPostWindow(marker, postBtn);
     
-    google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
-    nyu_building_markers[i] = marker;
+    // google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
+    // nyu_building_markers[i] = marker;
 
+    attachMarker(marker);
+    // google.maps.event.addListener(marker, 'click', function(e){
+    //   console.log(e);
+    //   nyu_building_markers[i] = marker;
+    //   toggleBounce(marker, nyu_building_markers)();
+          
+    // });
 
 
     // var infowindow = new google.maps.InfoWindow({
@@ -116,6 +124,16 @@ function initialize() {
 
 function addMarker(){
 
+}
+
+function attachMarker(marker) {
+  google.maps.event.addListener(marker, 'click', function(e){
+    console.log(marker.data);
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+    // nyu_building_markers[i] = marker;
+    // toggleBounce(marker, nyu_building_markers)();
+        
+  });
 }
 
 function attachPostWindow(marker, postBtn) {
