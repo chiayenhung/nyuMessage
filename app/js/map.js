@@ -26,7 +26,6 @@ function initialize() {
   var nyu_building_markers = new Array(buildings.data.length);
   var nyu_infowindows = new Array(buildings.data.length);
   for (var i=0; i<buildings.data.length; i++){
-  	
   	var markerlatlng = new google.maps.LatLng(buildings.data[i].Latitute, buildings.data[i].Longtitue);
   	var buildingname = buildings.data[i].building_name;
   	var marker = new google.maps.Marker({
@@ -37,29 +36,38 @@ function initialize() {
       icon: 'images/nyubuilding.png'
     });
 
-var contentString = '<div id="infobuttons" flot="left"><button type="button" id="remove_marker">Remove Marker</button><button type="button" id="post">Post</button></div><br />'+'<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">'+buildings.data[i].address+'</h1>'+
-      '<div id="bodyContent">'+
-      '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-      'sandstone rock formation in the southern part of the '+
-      'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-      'south west of the nearest large town, Alice Springs; 450&#160;km '+
-      '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-      'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-      'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-      'Aboriginal people of the area. It has many springs, waterholes, '+
-      'rock caves and ancient paintings. Uluru is listed as a World '+
-      'Heritage Site.</p>'+
-      '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-      'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-      '(last visited June 22, 2009).</p>'+
-      '</div>'+
-      '</div>';
+    var contentString = '<div><div id="infobuttons" flot="left"><button name="post-message" class="post-message" data-id="' +
+        buildings.data[i].id +
+        '">Post</button></div><br />'+
+        '<div id="content">'+
+        '<h1 id="firstHeading" class="firstHeading">'+'NYU Secret'+'</h1>'+
+        '<div id="bodyContent">'+
+        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+        'sandstone rock formation in the southern part of the '+
+        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+        'south west of the nearest large town, Alice Springs; 450&#160;km '+
+        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+        'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+        'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+        'Aboriginal people of the area. It has many springs, waterholes, '+
+        'rock caves and ancient paintings. Uluru is listed as a World '+
+        'Heritage Site.</p>'+
+        '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div></div>';
+    contentString = $(contentString);
+    attachMessage(marker, contentString[0]);
+    console.log(nyu_infowindows[i]);
+    var postBtn = contentString.find('button.post-message')[0];
+    attachPostWindow(marker, postBtn);
+    
+    google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
+    nyu_building_markers[i] = marker;
 
 
-    attachMessage(marker, contentString);
+
     // var infowindow = new google.maps.InfoWindow({
     //   content: buildings.data[i].address,
     //   size: new google.maps.Size(50, 50)});
@@ -67,16 +75,6 @@ var contentString = '<div id="infobuttons" flot="left"><button type="button" id=
     // google.maps.event.addListener(marker, 'click', function(){
     // infowindow.open(map, marker);});
     // nyu_infowindows[i] = infowindow;
-
-    var removeBtn = $(contentString).find('button.remove_marker')
-    google.maps.event.addDomListener(removeBtn, "click", function(event) {
-      marker.setMap(null);
-    });
-
-    google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
-    nyu_building_markers[i] = marker;
-	
-
 
 
 	}
@@ -116,6 +114,37 @@ function addMarker(){
 
 }
 
+function attachPostWindow(marker, postBtn) {
+  google.maps.event.addDomListener(postBtn, "click", function() {
+    console.log($(this).data('id'));
+    openPostWindow(marker);
+  });
+}
+
+function attachMessage(marker, message){
+  var infowindow = new google.maps.InfoWindow(
+    {content: message,
+      size: new google.maps.Size(50, 50)});
+
+  google.maps.event.addListener(marker, 'click', function(){
+    infowindow.open(map, marker);
+  })
+  
+
+}
+
+function openPostWindow(marker){
+
+  var postwindow = new google.maps.InfoWindow(
+    { content: 'hi',
+      size: new google.maps.Size(50, 50)});
+  (function(){
+    var m = marker;
+    postwindow.open(map, m);
+  })();
+  
+
+}
 
 function toggleBounce(marker, nyu_building_markers) {
   return function() {
@@ -162,9 +191,7 @@ function placeMarker(location){
         '(last visited June 22, 2009).</p>'+
         '</div>'+
         '</div></div>';
-  console.log(contentString);
-  contentString = $(contentString);
-   console.log(contentString);
+    contentString = $(contentString);
     attachMessage(marker, contentString[0]);
 
     var removeBtn = contentString.find('button.remove-marker')[0];
@@ -174,19 +201,11 @@ function placeMarker(location){
     });
 
     google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
-    nyu_building_markers[i] = marker;
+    
 }
 
 
-function attachMessage(marker, message){
-	var infowindow = new google.maps.InfoWindow(
-		{content: message,
-			size: new google.maps.Size(50, 50)});
 
-	google.maps.event.addListener(marker, 'click', function(){
-		infowindow.open(map, marker);
-	})
-}
 
 
 function closeAllInfoWindow(){
