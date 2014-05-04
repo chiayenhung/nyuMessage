@@ -253,6 +253,8 @@ function attachSave(marker, saveBtn) {
           var html = _.template(JST['postList'], data);
           $postList.append(html);
           attachLike(marker, $postList.find(".like_link").last()[0]);
+          // updateBuildingList(map);
+          generateList();
           // $postList.find(".like_link").last().click(function(){
           //   console.log("click");
           // });
