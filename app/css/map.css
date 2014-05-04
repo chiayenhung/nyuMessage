@@ -11,3 +11,11 @@
   resize: none;
 }
 
+a.like_link {
+  float: right;
+}
+
+.post_list li{
+  max-height: 50px;
+  overflow: scroll;
+}

@@ -21,6 +21,7 @@ datasetController.getDatasets = function (req, res) {
 datasetController.updateDataset = function(req, res) {
   Dataset.findOne({_id: req.body._id}, function(err, building) {
     if (err) {
+      console.log('found err');
       res.send(500, err);
     }
     else if (!building) {
@@ -30,6 +31,7 @@ datasetController.updateDataset = function(req, res) {
       building.posts = req.body.posts;
       building.save(function(err, building){
         if (err) {
+          console.log("save error");
           res.send(500, err);
         }
         else{

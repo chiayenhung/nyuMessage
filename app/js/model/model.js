@@ -59,7 +59,8 @@ var Building = function (data) {
   this.Latitute = data.Latitute;
   this.Longtitue = data.Longtitue;
   this.posts = data.posts || [];
-  this.postNum = this.posts.length;
+  this.likes = data.likes || 0;
+  // this.postNum = this.posts.length;
 
   Building.prototype.update = function (cb) {
     var data = {
@@ -68,7 +69,8 @@ var Building = function (data) {
       address: this.address,
       Latitute: this.Latitute,
       Longtitue: this.Longtitue,
-      posts: this.posts
+      posts: this.posts,
+      likes: this.likes,
     };
     $.ajax({
       url: 'update',
@@ -83,6 +85,17 @@ var Building = function (data) {
       },
     });
   };
+
+  Building.prototype.like = function (postId, cb) {
+    var post = _.find(this.posts, function (post) { return post._id == postId; });
+    if (post) {
+      post.likes++;
+      Building.prototype.update(cb);
+    }
+    else{
+      cb();
+    }
+  }
 }
 
 var buildings = new Buildings();

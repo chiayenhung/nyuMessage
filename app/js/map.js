@@ -78,6 +78,10 @@ function initialize() {
 
     var saveBtn = contentString.find('button.saveBtn')[0];
     attachSave(marker, saveBtn);
+
+    // console.log(contentString[0]);
+    var like = contentString.find('a.like_link');
+    attachLike(marker, like);
     
     google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
     nyu_building_markers[i] = marker;
@@ -203,6 +207,31 @@ function showPosition(position)
 
   }
 
+function attachLike(marker, like) {
+  // console.log(like);
+  $(like).click(function(e){
+    e.preventDefault();
+    var $post = $(this).parents("li");
+    var postId = $post.data("id");
+    var post = _.find(marker.data.posts, function(post) {return post._id == postId;});
+    if (post) {
+      post.likes = (post.likes || 0) + 1;
+    }
+    else{
+      post.likes = 0;
+    }
+    marker.data.update(function(err, building){
+      if (err) {
+        alert("O oh");
+      }
+      else {
+        $post.find(".badge").text(post.likes);
+      }
+      
+    });
+  });
+}
+
 function attachSave(marker, saveBtn) {
   $(saveBtn).click(function(e){
     $infowindow = $(this).parents(".info_window_container");
@@ -212,6 +241,7 @@ function attachSave(marker, saveBtn) {
       var data = {
         building_id: marker.data.id,
         content: content,
+        likes: 0,
       }
       marker.data.posts.push(data);
       marker.data.update(function(err, building){
@@ -219,6 +249,7 @@ function attachSave(marker, saveBtn) {
           alert("O oh");
         }
         else{
+          data._id = building.posts[building.posts.length - 1]._id;
           $postList.append(_.template(JST['postList'], data));
         }
       });
