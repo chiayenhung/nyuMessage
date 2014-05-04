@@ -63,6 +63,7 @@ module.exports = (grunt) ->
     templates =
       "buildingsList": "#{DEV_PATH}/templates/building_list.html"
       "infoWindow": "#{DEV_PATH}/templates/info_window.html"
+      "postList": "#{DEV_PATH}/templates/post_list.html"
 
     tmplFileContents = 'var JST = {};\n'
 

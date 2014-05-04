@@ -3,11 +3,11 @@
     <%= building_name %>
   </h2>
   <ul class='post_list'>
-    <% _.each(posts, function(post) { %> <li><%= post.content %></li> <% }); %>
+    <% _.each(posts, function(post) { %> <li class='list-group-item list-group-item-info'><%= post.content %></li> <% }); %>
   </ul>
   <div class='add_post'>
-    <textarea></textarea>
-    <button class='saveBtn'>Save</button>
+    <textarea class='form-control'></textarea>
+    <button class='saveBtn btn btn-success'>Save</button>
   </div>
-  <button name='post-message' class='post-message' data-id='<%= id %>'>Post</button>
+  <button name='post-message' class='post-message btn btn-primary' data-id='<%= id %>'>Post</button>
 </div>
