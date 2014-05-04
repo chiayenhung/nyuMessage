@@ -138,8 +138,12 @@ function attachMessage(marker, message){
 }
 
 function openPostWindow(marker){
-  var postString = "<form method='get'><div id='postTitle'><h4>Title:&nbsp&nbsp<input type='text' name='title'></h4></input></div><div id='postContent'>"+
-  "<h4>Comment:</h4><textarea rows='4' cols='50' name='content'></textarea></div><input type='submit' value='Submit'></form>"
+  var postString = "<div id='postboard'><form method='get'><div id='postTitle'><h4>Title:&nbsp&nbsp</h4><input type='text' name='title'></input></div>"+
+  "<div id='postContent'>"+
+  "<h4>Comment:</h4><select id='type'><option value='Class'>Class</option><option value='Event'>Event</option><option value='Facilities'>Facilities</option>"+
+  "<option value='LostFound'>Lost&Found</option><option value='Message'>Message</option>"+
+  "<textarea rows='4' cols='50' name='content'></textarea></div>"+
+  "<input type='submit' value='Submit'></form></div>"
 
   var postwindow = new google.maps.InfoWindow(
     { content: postString,
