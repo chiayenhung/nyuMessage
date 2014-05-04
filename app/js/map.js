@@ -1,8 +1,6 @@
+// $(document).ready(function(){
 var map;
-
-
-
-
+initialize();
 function initialize() {
   var washingtonSquare = new google.maps.LatLng(40.730823,-73.997332)
   var mapOptions = {
@@ -39,7 +37,7 @@ function initialize() {
       icon: 'images/nyubuilding.png'
     });
 
-var contentString = '<div id="content">'+
+var contentString = '<div id="infobuttons" flot="left"><button type="button" id="remove_marker">Remove Marker</button><button type="button" id="post">Post</button></div><br />'+'<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
       '<h1 id="firstHeading" class="firstHeading">'+buildings.data[i].address+'</h1>'+
@@ -61,9 +59,6 @@ var contentString = '<div id="content">'+
       '</div>';
 
 
-
-
-
     attachMessage(marker, contentString);
     // var infowindow = new google.maps.InfoWindow({
     //   content: buildings.data[i].address,
@@ -72,6 +67,12 @@ var contentString = '<div id="content">'+
     // google.maps.event.addListener(marker, 'click', function(){
     // infowindow.open(map, marker);});
     // nyu_infowindows[i] = infowindow;
+
+    var removeBtn = $(contentString).find('button.remove_marker')
+    google.maps.event.addDomListener(removeBtn, "click", function(event) {
+      marker.setMap(null);
+    });
+
     google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
     nyu_building_markers[i] = marker;
 	
@@ -89,7 +90,7 @@ var contentString = '<div id="content">'+
 	// }, 3000);});
 
 
-	google.maps.event.addListener(map, 'click', function(event){
+	google.maps.event.addListener(map, 'rightclick', function(event){
 		placeMarker(event.latLng);
 	});
 
@@ -108,8 +109,6 @@ var contentString = '<div id="content">'+
 
 
 }
-
-
 
 
 function addMarker(){
@@ -143,7 +142,38 @@ function placeMarker(location){
 	marker.setTitle('user id');
 	map.setCenter(location);
 	map.setZoom(16);
-	attachMessage(marker, 'hi, this is a secret')
+	var contentString = '<div><div id="infobuttons" flot="left"><button name="remove-marker" class="remove-marker" title="Remove Marker">Remove Marker</button></div><br />'+
+        '<div id="content">'+
+        '<h1 id="firstHeading" class="firstHeading">'+'NYU Secret'+'</h1>'+
+        '<div id="bodyContent">'+
+        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+        'sandstone rock formation in the southern part of the '+
+        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+        'south west of the nearest large town, Alice Springs; 450&#160;km '+
+        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+        'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+        'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+        'Aboriginal people of the area. It has many springs, waterholes, '+
+        'rock caves and ancient paintings. Uluru is listed as a World '+
+        'Heritage Site.</p>'+
+        '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div></div>';
+  console.log(contentString);
+  contentString = $(contentString);
+   console.log(contentString);
+    attachMessage(marker, contentString[0]);
+
+    var removeBtn = contentString.find('button.remove-marker')[0];
+    console.log(removeBtn);
+    google.maps.event.addDomListener(removeBtn, "click", function() {
+      marker.setMap(null);
+    });
+
+    google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
+    nyu_building_markers[i] = marker;
 }
 
 
@@ -166,17 +196,10 @@ function closeAllInfoWindow(){
 }
 //google.maps.event.addDomListener(window, 'load', initialize);
 
-
-
 var closeButton = document.getElementById('closeAll');
 google.maps.event.addDomListener(closeButton, 'click', closeAllInfoWindow);
 var homeButton = document.getElementById('goHome');
 google.maps.event.addDomListener(homeButton, 'click', function(){map.setCenter(washingtonSquare)});
-
-
-
-
-
 
 
 function loadScript() {
@@ -188,3 +211,4 @@ function loadScript() {
 }
 
 window.onload = loadScript;
+// });
