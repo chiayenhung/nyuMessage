@@ -48,27 +48,6 @@ function initialize() {
       data: buildings.data[i]
     });
 
-    // var contentString = '<div><div id="infobuttons" flot="left"><button name="post-message" class="post-message" data-id="' +
-    //     buildings.data[i].id +
-    //     '">Post</button></div><br />'+
-    //     '<div id="content">'+
-    //     '<h1 id="firstHeading" class="firstHeading">'+'NYU Secret'+'</h1>'+
-    //     '<div id="bodyContent">'+
-    //     '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-    //     'sandstone rock formation in the southern part of the '+
-    //     'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-    //     'south west of the nearest large town, Alice Springs; 450&#160;km '+
-    //     '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-    //     'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-    //     'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-    //     'Aboriginal people of the area. It has many springs, waterholes, '+
-    //     'rock caves and ancient paintings. Uluru is listed as a World '+
-    //     'Heritage Site.</p>'+
-    //     '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-    //     'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-    //     '(last visited June 22, 2009).</p>'+
-    //     '</div>'+
-    //     '</div></div>';
     var contentString = _.template(JST['infoWindow'], buildings.data[i]);
 
     contentString = $(contentString);
@@ -80,7 +59,6 @@ function initialize() {
     var saveBtn = contentString.find('button.saveBtn')[0];
     attachSave(marker, saveBtn);
 
-    // console.log(contentString[0]);
     var like = contentString.find('a.like_link');
     attachLike(marker, like);
     
@@ -92,15 +70,6 @@ function initialize() {
 
 	}
 
-  
-  
-
-	// google.maps.event.addListener(map, 'bounds_changed', function(){
-	// window.setTimeout(function(){
-	// 	map.panTo(marker.getPosition());
-	// }, 3000);});
-
-   
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -145,34 +114,10 @@ function initialize() {
 
 
 
-  // var panoramioLayer = new google.maps.panoramio.PanoramioLayer();
-  // panoramioLayer.setMap(map);
 
-  // var photoPanel = document.getElementById('photo-panel');
-  // map.controls[google.maps.ControlPosition.RIGHT_TOP].push(photoPanel);
-
-  // google.maps.event.addListener(panoramioLayer, 'click', function(photo) {
-  //   var li = document.createElement('li');
-  //   var link = document.createElement('a');
-  //   link.innerHTML = photo.featureDetails.title + ': ' +
-  //       photo.featureDetails.author;
-  //   link.setAttribute('href', photo.featureDetails.url);
-  //   li.appendChild(link);
-  //   photoPanel.appendChild(li);
-  //   photoPanel.style.display = 'block';
-  // });
-
-
-	// var infowindow = new google.maps.InfoWindow({
- //    content: 'Change the zoom level',
- //    position: washingtonSquare
-	// });
- //  	infowindow.open(map);
 
 	google.maps.event.addListener(map, 'zoom_changed', function() {
     var zoomLevel = map.getZoom();
-    // map.setCenter(washingtonSquare);
-    // infowindow.setContent('Zoom: ' + zoomLevel);
     updateBuildingList(map);
   });
 
@@ -209,7 +154,6 @@ function showPosition(position)
   }
 
 function attachLike(marker, like) {
-  // console.log(like);
   $(like).click(function(e){
     e.preventDefault();
     var $post = $(this).parents("li");
@@ -254,11 +198,8 @@ function attachSave(marker, saveBtn) {
           var html = _.template(JST['postList'], data);
           $postList.append(html);
           attachLike(marker, $postList.find(".like_link").last()[0]);
-          // updateBuildingList(map);
           generateList();
-          // $postList.find(".like_link").last().click(function(){
-          //   console.log("click");
-          // });
+          updateBuildingList(map);
         }
       });
     }
@@ -272,17 +213,12 @@ function attachSave(marker, saveBtn) {
 
 function attachMarker(marker) {
   google.maps.event.addListener(marker, 'click', function(e){
-    console.log(marker.data);
     marker.setAnimation(google.maps.Animation.BOUNCE);
         
   });
 }
 
 function attachPostWindow(marker, postBtn) {
-  // google.maps.event.addDomListener(postBtn, "click", function() {
-  //   // console.log($(this).data('id'));
-  //   openPostWindow(marker);
-  // });
   $(postBtn).click(function(e){
     $infowindow = $(this).parents(".info_window_container");
     $infowindow.find(".post_list").slideUp();
@@ -340,7 +276,6 @@ function placeMarker(location){
     draggable: true,
 
 	});
-  //google.maps.event.addListener(marker, 'click', toggleBounce(marker, null));
 	marker.setTitle('user id');
 	map.setCenter(location);
 	map.setZoom(16);
@@ -359,16 +294,12 @@ function placeMarker(location){
     
     var removeBtn = contentString.find('button.remove-marker')[0];
     var submitBtn = contentString.find('button.submitMessage')[0];
-    //var submitContent = contentString.find('textarea.submitContent')[0].val();
-    //console.log(submitContent);
-    // console.log(removeBtn);
     google.maps.event.addDomListener(removeBtn, "click", function() {
       marker.setMap(null);
     });
 
     google.maps.event.addDomListener(submitBtn, "click", function() {
       infowindow.close();
-      // console.log($(submitBtn).siblings("#postContent").find("textarea").val());
       var content = $(submitBtn).siblings("#postContent").find("textarea").val();
       infowindow = new google.maps.InfoWindow(
       {content: content,
@@ -395,7 +326,6 @@ function closeAllInfoWindow(){
   }
 
 }
-//google.maps.event.addDomListener(window, 'load', initialize);
 
 var closeButton = document.getElementById('closeAll');
 google.maps.event.addDomListener(closeButton, 'click', closeAllInfoWindow);
@@ -406,12 +336,9 @@ google.maps.event.addDomListener(homeButton, 'click', function(){map.setCenter(w
 function loadScript() {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  // script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places,panoramio&' +
-  //     'callback=initialize';
   script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places,panoramio&' +
       'callback=initialize';
   document.body.appendChild(script);
 }
 
 window.onload = loadScript;
-// });

@@ -54,7 +54,7 @@ module.exports = (grunt) ->
         tasks: ["clean", "copy", "concat"]
       html:
         files: ["#{DEV_PATH}/*.html", "#{DEV_PATH}/**/*.html"]
-        tasks: ["clean", "copy",  "concat"]
+        tasks: ["clean", "copy", "templates", "concat"]
       grunt:
         files: ["Gruntfile.coffee"]
         tasks: ["watch"]
@@ -79,7 +79,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'development', [
     'clean:development'
     'copy:development'
-    #'templates'
+    'templates'
     'concat'
   ]
 
