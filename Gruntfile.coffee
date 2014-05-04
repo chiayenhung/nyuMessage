@@ -54,7 +54,7 @@ module.exports = (grunt) ->
         tasks: ["clean", "copy", "concat"]
       html:
         files: ["#{DEV_PATH}/*.html", "#{DEV_PATH}/**/*.html"]
-        tasks: ["clean", "copy", "concat"]
+        tasks: ["clean", "copy", "templates", "concat"]
       grunt:
         files: ["Gruntfile.coffee"]
         tasks: ["watch"]
@@ -62,6 +62,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'templates', ->
     templates =
       "buildingsList": "#{DEV_PATH}/templates/building_list.html"
+      "infoWindow": "#{DEV_PATH}/templates/info_window.html"
 
     tmplFileContents = 'var JST = {};\n'
 
@@ -77,7 +78,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'development', [
     'clean:development'
     'copy:development'
-    #'templates'
+    'templates'
     'concat'
   ]
 

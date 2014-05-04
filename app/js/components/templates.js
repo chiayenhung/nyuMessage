@@ -1,2 +1,3 @@
 var JST = {};
 JST['buildingsList'] = "<a href='#' class='list-group-item list-group-item-info clearfix' data-id='<%= id%>'>  <span class='left'><%= building_name%></span>  <span class='badge'><%= postNum %></span></a>";
+JST['infoWindow'] = "<div class='clearfix info_window_container'>  <h2>    <%= building_name %>  </h2>  <ul class='post_list'>    <% _.each(posts, function(post) { %> <li><%= post.content %></li> <% }); %>  </ul>  <div class='add_post'>    <textarea></textarea>    <button class='saveBtn'>Save</button>  </div>  <button name='post-message' class='post-message' data-id='<%= id %>'>Post</button></div>";
