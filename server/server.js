@@ -23,6 +23,8 @@ app.configure(function(){
 
   app.get ('/getDatasets', datasetController.getDatasets);
 
+  app.put ('/update', datasetController.updateDataset);
+
 });
 
 module.exports = app;

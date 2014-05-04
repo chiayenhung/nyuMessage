@@ -32,11 +32,12 @@ var Buildings = function() {
         cb();
       }
     });
-  }
+  };
 
   Buildings.prototype.findById = function (id) {
     return _.find(this.data, function(building){return building.id == id;});
-  }
+  };
+
 };
 
 var Building = function (data) {
@@ -47,6 +48,29 @@ var Building = function (data) {
   this.Longtitue = data.Longtitue;
   this.posts = data.posts || [];
   this.postNum = this.posts.length;
+
+  Building.prototype.update = function () {
+    var data = {
+      _id: this.id,
+      building_name: this.building_name,
+      address: this.address,
+      Latitute: this.Latitute,
+      Longtitue: this.Longtitue,
+      posts: this.posts
+    };
+    $.ajax({
+      url: 'update',
+      method: 'put',
+      data: data,
+      dataType: 'json',
+      success: function(response) {
+        console.log (response);
+      },
+      error: function(response) {
+        console.log (response);
+      },
+    });
+  };
 }
 
 var buildings = new Buildings();

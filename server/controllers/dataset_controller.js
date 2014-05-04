@@ -18,6 +18,28 @@ datasetController.getDatasets = function (req, res) {
   })
 };
 
+datasetController.updateDataset = function(req, res) {
+  Dataset.findOne({_id: req.body._id}, function(err, building) {
+    if (err) {
+      res.send(500, err);
+    }
+    else if (!building) {
+      res.send(404, 'building not found');
+    }
+    else {
+      building.posts = req.body.posts;
+      building.save(function(err, building){
+        if (err) {
+          res.send(500, err);
+        }
+        else{
+          res.send(building);
+        }
+      });
+    }
+  });
+}
+
 datasetController.fillData = function (req, res) {
   var path = __dirname + '/../../doc/getAll.json';
   var result = [];
