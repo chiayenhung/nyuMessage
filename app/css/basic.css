@@ -1,8 +1,11 @@
 html { height: 100% }
-body { height: 100%; margin: 0; padding: 0 }
+body { height: 100%; margin: 0; padding: 0; background: beige; }
 
-nav {
+nav.navbar {
   text-align: center;
+  background: rgb(68, 0, 124);
+  border: 0;
+  color: white;
 }
 
 .clearfix {
