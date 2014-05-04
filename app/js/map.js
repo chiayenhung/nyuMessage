@@ -77,7 +77,7 @@ function initialize() {
     attachPostWindow(marker, postBtn);
 
     var saveBtn = contentString.find('button.saveBtn')[0];
-    attachSave(saveBtn);
+    attachSave(marker, saveBtn);
     
     google.maps.event.addListener(marker, 'click', toggleBounce(marker, nyu_building_markers));
     nyu_building_markers[i] = marker;
@@ -203,10 +203,29 @@ function showPosition(position)
 
   }
 
-function attachSave(saveBtn) {
+function attachSave(marker, saveBtn) {
   $(saveBtn).click(function(e){
     $infowindow = $(this).parents(".info_window_container");
-    $infowindow.find(".post_list").slideDown();
+    $postList = $infowindow.find(".post_list");
+    var content = $infowindow.find("textarea").val();
+    if (content.trim() != "") {
+      var data = {
+        building_id: marker.data.id,
+        content: content,
+      }
+      marker.data.posts.push(data);
+      marker.data.update(function(err, building){
+        if(err) {
+          alert("O oh");
+        }
+        else{
+          $postList.append(_.template(JST['postList'], data));
+        }
+      });
+    }
+
+
+    $postList.slideDown();
     $infowindow.find(".add_post").slideUp();
   });
 }

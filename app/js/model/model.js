@@ -61,7 +61,7 @@ var Building = function (data) {
   this.posts = data.posts || [];
   this.postNum = this.posts.length;
 
-  Building.prototype.update = function () {
+  Building.prototype.update = function (cb) {
     var data = {
       _id: this.id,
       building_name: this.building_name,
@@ -76,10 +76,10 @@ var Building = function (data) {
       data: data,
       dataType: 'json',
       success: function(response) {
-        console.log (response);
+        cb (null, response);
       },
       error: function(response) {
-        console.log (response);
+        cb (response);
       },
     });
   };
