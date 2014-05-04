@@ -69,11 +69,10 @@ module.exports = (grunt) ->
       path = "#{__dirname}/#{filename}"
       content = fs.readFileSync(path, 'utf8').toString()
       content = content.replace (new RegExp("\n", 'g')), ''
-      console.log content
       tmplFileContents += "JST['#{namespace}'] = \"#{content}\";\n"
 
     #console.log tmplFileContents
-    #fs.writeFileSync "#{DEV_PATH}/js/components/templates.js", tmplFileContents
+    fs.writeFileSync "#{DEV_PATH}/js/components/templates.js", tmplFileContents
 
   grunt.registerTask 'development', [
     'clean:development'
