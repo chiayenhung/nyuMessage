@@ -250,7 +250,12 @@ function attachSave(marker, saveBtn) {
         }
         else{
           data._id = building.posts[building.posts.length - 1]._id;
-          $postList.append(_.template(JST['postList'], data));
+          var html = _.template(JST['postList'], data);
+          $postList.append(html);
+          attachLike(marker, $postList.find(".like_link").last()[0]);
+          // $postList.find(".like_link").last().click(function(){
+          //   console.log("click");
+          // });
         }
       });
     }

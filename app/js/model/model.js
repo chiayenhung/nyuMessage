@@ -48,7 +48,12 @@ var Buildings = function() {
   Buildings.prototype.outbound = function (building, bounds) {
     var result = (building.Latitute > bounds.latLarge || building.Latitute < bounds.latSmall) || (building.Longtitue > bounds.longLarge || building.Longtitue < bounds.longSamll);
     return result;
-  }
+  };
+
+  Buildings.prototype.sortBy = function (options) {
+    this.data = _.sortBy(this.data, function(building){ return building.likes;});
+    return this;
+  };
 
 };
 
