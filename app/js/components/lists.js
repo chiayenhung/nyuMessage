@@ -25,10 +25,10 @@ var updateBuildingList = function(map) {
 
 var parseBounds = function(enbounds) {
   var bounds = {
-    'latLarge': enbounds.Ba.j,
-    'latSmall': enbounds.Ba.k,
-    'longLarge': enbounds.ra.k,
-    'longSmall': enbounds.ra.j
+    'latLarge': enbounds.getNorthEast().k,
+    'latSmall': enbounds.getSouthWest().k,
+    'longLarge': enbounds.getNorthEast().A,
+    'longSmall': enbounds.getSouthWest().A
   }
   return bounds;
 }
