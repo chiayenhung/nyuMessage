@@ -11,6 +11,20 @@ var mongodbURL = (process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongod
 
 mongoose.connect (mongodbURL);
 
+var WHITELIST = {
+  "/login": true,
+  "/signup": true,
+  "/favicon.ico": true,
+  "/css/main.css": true
+};
+
+function checkAuthenticate (req, res, next) {
+  if (!req.user && !(req.url in WHITELIST)) {
+    return res.redirect ('/login');
+  }
+  next();
+}
+
 app.configure(function(){
   app.use (express.compress());
   app.set ('title', "NYU Message");
@@ -21,12 +35,15 @@ app.configure(function(){
   app.use (passport.initialize());
   app.use (passport.session());
   app.use (express.bodyParser());
+  app.use (checkAuthenticate);
   app.use (express.static(__dirname + "/../dist/"));
+
 
   app.get ('/login', authController.login);
   app.get ('/signup', authController.signup);
   app.post('/login', authController.createSession);
   app.post('/signup', authController.createUser);
+  app.get ('/logout', authController.logout);
 
   app.get ('/fillData', datasetController.fillData);
 

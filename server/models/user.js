@@ -19,23 +19,10 @@ User.methods.validPassword = function (password) {
   return false;
 };
 
-User.methods.encrypt = function (done) {console.log(this.password);
+User.methods.encrypt = function (done) {
   this.password = encrypt(this.password);
   done();
 }
-
-// User.statics.createUser = function (properties, done) {
-//   var user = new User(properties);
-//   console.log("cant' new?")
-//   user.password = encrypt(properties.password);
-//   console.log("cant encrypt?");
-//   user.save(function (err, user) {
-//     if (err)
-//       done(err);
-//     else
-//       done(null, user);
-//   });
-// };
 
 module.exports = mongoose.model ('User', User);
 

@@ -30,11 +30,11 @@ passport.deserializeUser(function(id, done) {
 
 
 authController.login = function (req, res) {
-  res.render("login");
+  res.render("login", {user: req.user});
 };
 
 authController.signup = function (req, res) {
-  res.render("signup");
+  res.render("signup", {user: req.user});
 };
 
 authController.createUser = function (req, res) {
@@ -54,6 +54,11 @@ authController.createUser = function (req, res) {
         res.redirect("/login");
     });
   });
+};
+
+authController.logout = function (req, res) {
+  req.logout();
+  res.redirect("/login");
 };
 
 authController.createSession = passport.authenticate ('local', {
