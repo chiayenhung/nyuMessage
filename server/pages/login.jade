@@ -1,0 +1,18 @@
+extends ./base.jade
+
+block content
+  .container-fluid
+    .col-md-4
+    .col-md-4
+      form(method="POST", action="login")
+        .input-group
+          label.input-group-addon username
+          input(placeholder="username", name="username").form-control
+        .input-group
+          labe.input-group-addon password
+          input(placeholder="password", type="password", name="password").form-control
+        .input-group
+          input.btn.btn-default.btn-danger(type="reset")          
+          input.btn.btn-default.btn-primary(type="submit")
+          a(href="signup").btn.btn-warning Signup
+    .col-md-4
