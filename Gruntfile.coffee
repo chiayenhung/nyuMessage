@@ -22,13 +22,14 @@ module.exports = (grunt) ->
     copy:
       development:
         files: [
+          { expand: true, cwd: "#{DEV_PATH}/js", src:['**'], dest: "#{PRODUCTION_PATH}/js" },
           { expand: true, cwd: "#{DEV_PATH}/public", src:['**'], dest: PRODUCTION_PATH },
           { expand: true, cwd: "#{DEV_PATH}", src:['*.html'], dest: PRODUCTION_PATH },          
         ]
     concat:
-      js:
-        src: ["#{DEV_PATH}/js/lib/*.js", "#{DEV_PATH}/js/model/*.js", "#{DEV_PATH}/js/components/*.js","#{DEV_PATH}/js/*.js"]
-        dest: "#{PRODUCTION_PATH}/js/main.js"
+      # js:
+      #   src: ["#{DEV_PATH}/js/lib/*.js", "#{DEV_PATH}/js/model/*.js", "#{DEV_PATH}/js/components/*.js","#{DEV_PATH}/js/*.js"]
+      #   dest: "#{PRODUCTION_PATH}/js/main.js"
       css:
         src: ["#{DEV_PATH}/css/lib/*.css", "#{DEV_PATH}/css/*.css"]
         dest: "#{PRODUCTION_PATH}/css/main.css"

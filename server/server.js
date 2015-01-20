@@ -6,7 +6,6 @@ var authController = require ('./controllers/auth_controller');
 var datasetController = require ('./controllers/dataset_controller');
 
 var app = express();
-// var app = express.createServer();
 var server = require('http').Server(app);
 var io = require ('socket.io')(server);
 
