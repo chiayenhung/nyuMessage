@@ -25,8 +25,6 @@ module.exports = (grunt) ->
           { expand: true, cwd: "#{DEV_PATH}/public", src:['**'], dest: PRODUCTION_PATH },
           { expand: true, cwd: "#{DEV_PATH}", src:['*.html'], dest: PRODUCTION_PATH },          
         ]
-
-
     concat:
       js:
         src: ["#{DEV_PATH}/js/lib/*.js", "#{DEV_PATH}/js/model/*.js", "#{DEV_PATH}/js/components/*.js","#{DEV_PATH}/js/*.js"]

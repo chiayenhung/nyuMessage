@@ -14,7 +14,6 @@ datasetController.getDatasets = function (req, res) {
     else {
       res.send (datasets);
     }
-
   })
 };
 

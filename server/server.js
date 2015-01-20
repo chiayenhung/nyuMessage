@@ -30,11 +30,11 @@ app.configure(function(){
   app.set ('title', "NYU Message");
   app.set ('views', __dirname + "/pages");
   app.set ('view engine', 'jade');
+  app.use (express.bodyParser());
   app.use (express.cookieParser());
   app.use (express.session({secret: '1234567890QWERTY'}));
   app.use (passport.initialize());
   app.use (passport.session());
-  app.use (express.bodyParser());
   app.use (checkAuthenticate);
   app.use (express.static(__dirname + "/../dist/"));
 
