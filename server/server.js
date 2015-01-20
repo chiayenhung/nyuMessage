@@ -6,6 +6,9 @@ var authController = require ('./controllers/auth_controller');
 var datasetController = require ('./controllers/dataset_controller');
 
 var app = express();
+// var app = express.createServer();
+var server = require('http').Server(app);
+var io = require ('socket.io')(server);
 
 var mongodbURL = (process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/nyuMessage')
 
@@ -52,5 +55,7 @@ app.configure(function(){
   app.put ('/update', datasetController.updateDataset);
 
 });
+
+server.listen(process.env.PORT || 3000);
 
 module.exports = app;
