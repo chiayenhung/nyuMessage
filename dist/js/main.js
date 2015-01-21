@@ -3,7 +3,8 @@
     paths: {
       'jquery': "lib/jquery-1.11.1.min",
       'underscore': "lib/underscore-min",
-      'react': 'lib/react.min',
+      'react': 'lib/react-with-addons.min',
+      "JSXTransformer": "lib/JSXTransformer"
     },
     shims: {
       'jquery': {exports: '$'},
@@ -12,8 +13,11 @@
     }
   });
 
-  requirejs(['app'], function (App) {
-    app = new App();
+  requirejs(['app', 'model/buildings'], function (App, Buildings) {
+    var buildings = new Buildings();
+    buildings.fetch(function (buildings) {
+      app = new App(buildings);
+    })
   });
 
 })();
