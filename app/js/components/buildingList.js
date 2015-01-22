@@ -1,5 +1,5 @@
 (function () {
-  define(['jquery', 'underscore', 'react', 'components/buildingItem'], function ($, _, React, BuildingItem) {
+  define(['jquery', 'underscore', 'react', 'jsx!components/buildingItem'], function ($, _, React, BuildingItem) {
 
     var BuildingList = React.createClass({
       
@@ -7,15 +7,19 @@
         return {building: null};
       },
 
+      componentWillMount: function () {
+        this.state.building = this.props.data;
+      },
+
       render: function () {
         return (
-          <ui>
+          <div>
             {
-              this.props.data.map(function (item) {
-                return <BuildingItem item=item>
+              this.state.building.map(function (item) {
+                return <BuildingItem item={item}/>
               })
             }
-          <ui>
+          </div>
         )
       }
     })
