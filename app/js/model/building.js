@@ -25,6 +25,11 @@
       }
     };
 
+    Building.prototype.inViewport = function (bounds) {
+      var building = this;
+      return !(building.Latitute > bounds.latLarge || building.Latitute < bounds.latSmall) || (building.Longtitue > bounds.longLarge || building.Longtitue < bounds.longSamll);
+    };
+
     return Building;
 
   });

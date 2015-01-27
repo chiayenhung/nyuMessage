@@ -71,8 +71,10 @@
     GMap.prototype.setHandlers = function () {
       var copy = this;
       google.maps.event.addListener(map, 'zoom_changed', function() {
-        var zoomLevel = map.getZoom();
-        // updateBuildingList(map);
+        copy.trigger("updateBuildingList", [map]);
+      });
+
+      google.maps.event.addListener(map, 'center_changed', function() {
         copy.trigger("updateBuildingList", [map]);
       });
     }
