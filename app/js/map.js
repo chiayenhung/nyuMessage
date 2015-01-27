@@ -1,6 +1,6 @@
 (function () {
 
-  define(['jquery', 'underscore', 'components/templates', 'mapModules/infoWindow'], function ($, _, JST, InfoWindow) {
+  define(['jquery', 'underscore', 'components/templates', 'mapModules/infoWindow', 'utils/events'], function ($, _, JST, InfoWindow, Events) {
 
     var map;
 
@@ -8,6 +8,8 @@
       this.user = data.user;
       this.buildings = data.buildings;
     }
+
+    GMap.prototype = new Events();
 
     GMap.prototype.initialize = function () {
       var copy = this,
@@ -32,6 +34,7 @@
             mapOptions);
 
         copy.getUserLocation();
+        copy.setHandlers();
       }
     };
 
@@ -64,6 +67,15 @@
 
       });
     };
+
+    GMap.prototype.setHandlers = function () {
+      var copy = this;
+      google.maps.event.addListener(map, 'zoom_changed', function() {
+        var zoomLevel = map.getZoom();
+        // updateBuildingList(map);
+        copy.trigger("updateBuildingList", [map]);
+      });
+    }
     
       // function initialize() {
 

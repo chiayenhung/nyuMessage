@@ -11,6 +11,10 @@
         this.state.building = this.props.data;
       },
 
+      updateBuildingList: function (map) {
+        console.log(map);
+      },
+
       render: function () {
         return (
           <div>

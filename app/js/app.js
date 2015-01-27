@@ -15,9 +15,15 @@
 
     App.prototype.render = function () {
       this.map.generateBuildings();
-      var test;
-      test = React.renderComponent(<BuildingList data={this.buildings.data}/>, document.getElementsByClassName("building_list")[0]);
-      console.log(test);
+      this.buildingList = React.renderComponent(<BuildingList data={this.buildings.data}/>, document.getElementsByClassName("building_list")[0]);
+      this.setHandlers();
+    };
+
+    App.prototype.setHandlers = function () {
+      var copy = this;
+      copy.map.on("updateBuildingList", function (map) {
+        copy.buildingList.updateBuildingList(map);
+      });
     };
 
     return App;
