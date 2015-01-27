@@ -1,10 +1,12 @@
 (function () {
 
-  define(['jquery', 'underscore', 'components/templates'], function ($, _, templates) {
+  define(['jquery', 'underscore', 'components/templates', 'mapModules/infoWindow'], function ($, _, JST, InfoWindow) {
 
-    function GMap(buildings) {
-      this.map = null;
-      this.buildings = buildings;
+    var map;
+
+    function GMap(data) {
+      this.user = data.user;
+      this.buildings = data.buildings;
     }
 
     GMap.prototype.initialize = function () {
@@ -12,7 +14,7 @@
           washingtonSquare,
           mapOptions;
 
-      if (!copy.map) {        
+      if (!map) {        
         washingtonSquare = new google.maps.LatLng(40.730823,-73.997332)
         mapOptions = {
           zoom: 12,
@@ -26,11 +28,41 @@
           overviewMapControl: true
 
         };
-        copy.map = new google.maps.Map(document.getElementById('map-canvas'),
+        map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
 
         copy.getUserLocation();
       }
+    };
+
+    GMap.prototype.generateBuildings = function () {
+      var copy = this;
+
+      copy.buildings.data.forEach(function (building) {
+        var markerlatlng = new google.maps.LatLng(building.Latitute, building.Longtitue),
+            buildingname = building.building_name,
+            buildingimg = {
+              url: 'images/nyubuilding1.png',
+              size: new google.maps.Size(30, 30)
+            },
+            marker, infoWindow;
+        marker = new google.maps.Marker({
+          position: markerlatlng,
+          animation: google.maps.Animation.DROP,
+          map: map,
+          title: buildingname,
+          icon: buildingimg
+        });
+
+        infoWindow = new InfoWindow({
+          marker: marker, 
+          map: map, 
+          model: building,
+          user: copy.user
+        });
+        infoWindow.render();
+
+      });
     };
     
       // function initialize() {
@@ -130,8 +162,9 @@
       // }
 
     GMap.prototype.getUserLocation = function () {
+      var copy = this;
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(this.showPosition);
+        navigator.geolocation.getCurrentPosition(copy.showPosition);
       }
       else{
         alert("Geolocation is not supported by this browser.");
@@ -144,7 +177,7 @@
       var user_marker = new google.maps.Marker({
         position: userlatlng,
         animation: google.maps.Animation.BOUNCE,
-        map: copy.map,
+        map: map,
         title: "You are here.",
         icon: 'images/user1.png'
       });

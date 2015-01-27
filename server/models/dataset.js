@@ -9,7 +9,7 @@ var Post = new Schema( {
   },
   content: String,
   create_time: Date,
-  likes: Number,
+  likes: [String],
 });
 
 var Dataset = new Schema( {

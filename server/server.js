@@ -47,6 +47,8 @@ app.configure(function(){
   app.post('/signup', authController.createUser);
   app.get ('/logout', authController.logout);
 
+  app.get ('/', authController.index);
+
   app.get ('/fillData', datasetController.fillData);
 
   app.get ('/getDatasets', datasetController.getDatasets);

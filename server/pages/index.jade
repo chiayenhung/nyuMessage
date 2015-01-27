@@ -1,0 +1,15 @@
+extends ./base.jade
+
+block scripts
+  script(type="text/javascript", src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVcL8s0I1P8bKbX3BszkNWd28RkVGY4cE")
+  script(src="/socket.io/socket.io.js")
+
+block content
+  #app-mount.clearfix
+    aside.sidebar.left
+      .building_list.list-group
+    input#pac-input.controls(type="text", placeholder="Search Box")
+    ui#photo-panel
+    #map-canvas
+    script(type="text/javascript", src="js/lib/require.js", data-main="js/main")
+  

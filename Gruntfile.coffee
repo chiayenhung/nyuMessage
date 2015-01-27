@@ -64,15 +64,18 @@ module.exports = (grunt) ->
       "infoWindow": "#{DEV_PATH}/templates/info_window.html"
       "postList": "#{DEV_PATH}/templates/post_list.html"
 
-    tmplFileContents = 'var JST = {};\n'
+    # tmplFileContents = 'var JST = {};\n'
+    tmplFileContents = 'define(function(){'
+    tmplFileContents += 'var JST = {};\n'
 
     for namespace, filename of templates
       path = "#{__dirname}/#{filename}"
       content = fs.readFileSync(path, 'utf8').toString()
       content = content.replace (new RegExp("\n", 'g')), ''
       tmplFileContents += "JST['#{namespace}'] = \"#{content}\";\n"
+    tmplFileContents += "return JST;"
+    tmplFileContents += "});"
 
-    #console.log tmplFileContents
     fs.writeFileSync "#{DEV_PATH}/js/components/templates.js", tmplFileContents
 
   grunt.registerTask 'development', [

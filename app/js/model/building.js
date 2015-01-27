@@ -1,45 +1,23 @@
 (function () {
-  define(['jquery', 'underscore'], function ($, _) {
+  define(['jquery', 'underscore', 'model/baseModel'], function ($, _, Model) {
 
     function Building(data) {
-      this.id = data._id;
-      this.building_name = data.building_name;
-      this.address = data.address;
-      this.Latitute = data.Latitute;
-      this.Longtitue = data.Longtitue;
-      this.posts = data.posts || [];
-      this.likes = data.likes || 0;
+      data.url = 'update';
+      Model.call(this, data);
     }
 
-    Building.prototype.update = function (cb) {
-      var data = {
-        _id: this.id,
-        building_name: this.building_name,
-        address: this.address,
-        Latitute: this.Latitute,
-        Longtitue: this.Longtitue,
-        posts: this.posts,
-        likes: this.likes,
-      };
-      $.ajax({
-        url: 'update',
-        method: 'put',
-        data: data,
-        dataType: 'json',
-        success: function(response) {
-          cb (null, response);
-        },
-        error: function(response) {
-          cb (response);
-        },
-      });      
-    };
+    Building.prototype = new Model();
 
-    Building.prototype.like = function (postId, cb) {
-      var copy = this;
-      var post = _.find(this.posts, function (post) { return post._id == postId; });
+    Building.prototype.like = function (postId, userId, cb) {
+      var copy = this,
+          index;
+      var post = _.find(copy.posts, function (post) { return post._id == postId; });
       if (post) {
-        post.likes++;
+        index = _.indexOf(post.likes, userId);
+        if ( index == -1) 
+          post.likes.push(userId);
+        else
+          post.likes.pop(index);
         copy.update(cb);
       }
       else{

@@ -28,6 +28,9 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+authController.index = function (req, res) {
+  res.render("index", {user: req.user});
+}
 
 authController.login = function (req, res) {
   res.render("login", {user: req.user});
