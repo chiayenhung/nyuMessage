@@ -3,7 +3,7 @@
     <%= building_name %>
   </h2>
   <ul class='post_list'>
-    <% _.each(posts, function(post) { %> <li class='list-group-item list-group-item-info' data-id='<%= post._id %>'><span><%= post.content %></span><a href='#' class='like_link'><span class='badge'><%= post.likes.length || 0 %></span></a></li> <% }); %>
+    <% _.each(posts, function(post) { %> <li class='list-group-item list-group-item-info' data-id='<%= post._id %>'><span><%= post.content %></span><a href='#' class='like_link'><span class='badge <% if (_.indexOf(post.likes, user.id) != -1) { %> liked <% } %>'><%= post.likes.length || 0 %></span></a></li> <% }); %>
   </ul>
   <div class='add_post'>
     <textarea class='form-control'></textarea>

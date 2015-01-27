@@ -155,3 +155,7 @@ a.like_link {
   max-height: 50px;
   overflow-y: scroll;
 }
+
+.badge.liked {
+  background: blue;
+}

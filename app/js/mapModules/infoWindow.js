@@ -11,7 +11,9 @@
     }
 
     InfoWindow.prototype.render = function () {
-      this.contentString = $(_.template(JST['infoWindow'], this.model));
+      var obj = Object.create(this.model);
+      _.extend(obj, {user: this.user});
+      this.contentString = $(_.template(JST['infoWindow'], obj));
       this.infowindow = new google.maps.InfoWindow(
         {content: this.contentString[0],
           size: new google.maps.Size(100, 100)});
@@ -49,7 +51,7 @@
               }
               else {
                 post = _.find(building.posts, function (post) { return post._id == postId});
-                $post.find(".badge").text(post.likes.length);
+                $post.find(".badge").text(post.likes.length).toggleClass("liked", _.indexOf(post.likes, copy.user.id) != -1);
               }
             });
       });

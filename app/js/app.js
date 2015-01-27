@@ -15,7 +15,9 @@
 
     App.prototype.render = function () {
       this.map.generateBuildings();
-      React.renderComponent(<BuildingList data={this.buildings.data}/>, document.getElementsByClassName("building_list")[0]);
+      var test;
+      test = React.renderComponent(<BuildingList data={this.buildings.data}/>, document.getElementsByClassName("building_list")[0]);
+      console.log(test);
     };
 
     return App;
