@@ -1,6 +1,6 @@
 (function () {
 
-  define(['jquery', 'underscore', 'react', 'map', 'jsx!components/buildingList', 'model/user'], function ($, _, React, GMap, BuildingList, User) {
+  define(['jquery', 'underscore', 'react', 'map', 'chat', 'jsx!components/sidebar', 'model/user'], function ($, _, React, GMap, Chat, Sidebar, User) {
 
     function App (buildings) {
       this.buildings = buildings;
@@ -11,18 +11,22 @@
         user: this.user
       });
       this.map.initialize();
+
+      this.chat = new Chat();
+      this.chat.initialize();
     }
 
     App.prototype.render = function () {
       this.map.generateBuildings();
-      this.buildingList = React.renderComponent(<BuildingList data={this.buildings.data}/>, document.getElementsByClassName("building_list")[0]);
+      // this.buildingList = React.renderComponent(<BuildingList data={this.buildings.data}/>, document.getElementsByClassName("building_list")[0]);
+      this.sidebar = React.renderComponent(<Sidebar buildings={this.buildings}/>, document.getElementsByClassName("building_list")[0]);
       this.setHandlers();
     };
 
     App.prototype.setHandlers = function () {
       var copy = this;
       copy.map.on("updateBuildingList", function (map) {
-        copy.buildingList.updateBuildingList(map);
+        copy.sidebar.updateBuildingList(map);
       });
     };
 

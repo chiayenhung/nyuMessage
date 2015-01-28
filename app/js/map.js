@@ -7,6 +7,8 @@
     function GMap(data) {
       this.user = data.user;
       this.buildings = data.buildings;
+      this.markers = [];
+      this.infoWindows = [];
     }
 
     GMap.prototype = new Events();
@@ -63,8 +65,17 @@
           model: building,
           user: copy.user
         });
+
+        _.extend(infoWindow, new Events());
+
         infoWindow.render();
 
+        infoWindow.on("updateBuildingList", function () {
+          copy.trigger("updateBuildingList", [map]);
+        });
+
+        copy.markers.push(marker);
+        copy.infoWindows.push(infoWindow);
       });
     };
 

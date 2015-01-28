@@ -71,13 +71,13 @@
         copy.model.update(function (err, building) {
           if (err)
             console.log(err);
-          else {console.log(building);
+          else {
             post = copy.model.posts[building.posts.length - 1];
             post._id = building.posts[building.posts.length - 1]._id;
-            console.log(post);
             newPost = _.template(JST['postList'], post);
             copy.contentString.find(".post_list").append(newPost);
-            copy.closeEdit();        
+            copy.closeEdit();
+            copy.trigger("updateBuildingList");     
           }
         });
       });

@@ -1,13 +1,13 @@
-var express = require ('express');
+var express = require ('express.io');
 var mongoose = require ('mongoose');
 var passport = require ('passport');
 
 var authController = require ('./controllers/auth_controller');
 var datasetController = require ('./controllers/dataset_controller');
+var Chat = require ('./controllers/chat_controller');
 
 var app = express();
-var server = require('http').Server(app);
-var io = require ('socket.io')(server);
+var chat;
 
 var mongodbURL = (process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/nyuMessage')
 
@@ -57,6 +57,9 @@ app.configure(function(){
 
 });
 
-server.listen(process.env.PORT || 3000);
+app.http().io();
+
+chat = new Chat(app);
+chat.setup(); 
 
 module.exports = app;
