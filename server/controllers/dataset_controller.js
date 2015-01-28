@@ -34,7 +34,7 @@ datasetController.updateDataset = function(req, res) {
           res.send(500, err);
         }
         else{
-          res.send(building);
+          res.send(200, building);
         }
       });
     }

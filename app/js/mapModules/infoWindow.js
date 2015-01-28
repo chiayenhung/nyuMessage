@@ -28,6 +28,13 @@
       copy.setInternalHandlers();
     };
 
+    InfoWindow.prototype.closeEdit = function () {
+      var copy = this;
+      copy.contentString.find(".post_list").slideDown();
+      copy.contentString.find(".post-message").slideDown();
+      copy.contentString.find(".add_post").slideUp();
+    };
+
     InfoWindow.prototype.setInternalHandlers = function () {
       var copy = this;
 
@@ -36,9 +43,7 @@
         copy.contentString.find(".post-message").slideUp();
         copy.contentString.find(".add_post").slideDown();
       }).on("click", ".cancelBtn", function () {
-        copy.contentString.find(".post_list").slideDown();
-        copy.contentString.find(".post-message").slideDown();
-        copy.contentString.find(".add_post").slideUp();
+        copy.closeEdit();
       }).on("click", ".like_link", function (e) {
         e.preventDefault();
         var $like = $(this),
@@ -50,10 +55,31 @@
                 console.error(err);
               }
               else {
-                post = _.find(building.posts, function (post) { return post._id == postId});
+                post = _.find(copy.model.posts, function (post) { return post._id == postId});
                 $post.find(".badge").text(post.likes.length).toggleClass("liked", _.indexOf(post.likes, copy.user.id) != -1);
               }
             });
+      }).on("click", ".saveBtn", function () {
+        var val = copy.contentString.find("textarea").val(),
+            data = {
+              building_id: copy.model.id,
+              content: val,
+              likes: []
+            },
+            post, newPost;
+        copy.model.posts.push(data);
+        copy.model.update(function (err, building) {
+          if (err)
+            console.log(err);
+          else {console.log(building);
+            post = copy.model.posts[building.posts.length - 1];
+            post._id = building.posts[building.posts.length - 1]._id;
+            console.log(post);
+            newPost = _.template(JST['postList'], post);
+            copy.contentString.find(".post_list").append(newPost);
+            copy.closeEdit();        
+          }
+        });
       });
 
     };
