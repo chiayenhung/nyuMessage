@@ -71,7 +71,7 @@
         infoWindow.render();
 
         infoWindow.on("updateBuildingList", function () {
-          copy.trigger("updateBuildingList", [map]);
+          copy.trigger("updateBuildingList", map);
         });
 
         copy.markers.push(marker);
@@ -82,11 +82,11 @@
     GMap.prototype.setHandlers = function () {
       var copy = this;
       google.maps.event.addListener(map, 'zoom_changed', function() {
-        copy.trigger("updateBuildingList", [map]);
+        copy.trigger("updateBuildingList", map);
       });
 
       google.maps.event.addListener(map, 'center_changed', function() {
-        copy.trigger("updateBuildingList", [map]);
+        copy.trigger("updateBuildingList", map);
       });
     }
     

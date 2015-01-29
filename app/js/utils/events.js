@@ -13,10 +13,11 @@
         this.eventMap[eventName] = [handler];
     };
 
-    Events.prototype.trigger = function (eventName, arg) {
+    Events.prototype.trigger = function (eventName) {
+      var args = Array.prototype.slice.call(arguments, 1);
       if (eventName in this.eventMap) {
         this.eventMap[eventName].forEach(function (handler) {
-          handler.apply(this, arg);
+          handler.apply(this, args);
         });
       }
     };

@@ -7,7 +7,7 @@
 .sidebar {
   width: 20%;
   height: 700px;
-  overflow: scroll;
+  /*overflow: scroll;*/
 }
 
 
@@ -90,3 +90,11 @@
   border-top: 0;
 }
 
+.building_list_container {
+  height: 100%;
+}
+
+.sidebar_list {
+  height: calc(100% - 18px);
+  overflow: scroll;
+}

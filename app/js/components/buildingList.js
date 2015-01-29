@@ -5,7 +5,7 @@
     
       render: function () {
         return (
-          <div>
+          <div className="sidebar_list building_list list-group">
             {
               this.props.data.map(function (item) {
                 return <BuildingItem item={item}/>

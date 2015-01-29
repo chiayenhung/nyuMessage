@@ -1,15 +1,21 @@
 (function () {
-  define(['jquery', 'underscore', 'react', 'jsx!components/buildingList'], function ($, _, React, BuildingList) {
+  define(['jquery', 'underscore', 'react', 'jsx!components/buildingList', 'jsx!components/userList'], function ($, _, React, BuildingList, UserList) {
     var Sidebar = React.createClass({
       getInitialState: function () {
         return {
           buildings: null,
-          showBuidling: null
+          showBuidling: null,
+          users: []
         };
       },
 
-      componentWillMount: function () {//console.log(this.props.buildings.data)
+      componentWillMount: function () {
         this.state.buildings = this.state.showBuidling = this.props.buildings.data;
+        this.state.users = this.props.users || [];
+      },
+
+      componentDidMount: function () {
+        this.switchList();
       },
 
       parseBounds: function (enbounds) {
@@ -22,6 +28,16 @@
         return bounds;
       },
 
+      switchList: function (e) {
+        var value, target;
+        if (e)
+          value = e.target.value.toLowerCase();
+        else
+          value = "buildings";
+        $(".sidebar_list").addClass("hidden");
+        $("." + value.substring(0, value.length - 1) + "_list").removeClass("hidden");
+      },
+
       updateBuildingList: function (map) {
         var newBuilding = this.state.buildings,
             bounds = this.parseBounds(map.getBounds());
@@ -31,14 +47,19 @@
         this.setState({showBuidling: newBuilding});
       },
 
+      updateUserList: function (users) {
+        this.setState({users: users});
+      },
+
       render: function () {
         return (
-          <div>
-            <select>
+          <div className="building_list_container">
+            <select onChange={this.switchList}>
               <option>Buildings</option>
               <option>Users</option>
             </select>
-            <BuildingList data={this.state.showBuidling}/>          
+            <BuildingList data={this.state.showBuidling}/>  
+            <UserList data={this.state.users}/>        
           </div>
         )
       }

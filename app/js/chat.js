@@ -1,16 +1,22 @@
 (function () {
-  define([], function () {
+  define(['utils/events'], function (Events) {
 
-    function Chat () {
+    function Chat (data) {
       this.socket = io.connect('http://localhost');
+      this.user = data.user;
     }
+
+    Chat.prototype = new Events();
 
     Chat.prototype.initialize = function () {
       var copy = this;
-      copy.socket.on('news', function (data) {
-        console.log(data);
-        copy.socket.emit('my other event', { my: 'data' });
+      copy.socket.on('userSignin', function (data) {
+        copy.trigger("updateUserList", data);
       });
+
+      copy.socket.emit("online", copy.user);
+
+
     };
 
     return Chat;
