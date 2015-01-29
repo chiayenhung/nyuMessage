@@ -8,6 +8,10 @@ nav.navbar {
   color: white;
 }
 
+textarea {
+  resize: none;
+}
+
 .clearfix {
   clear: both;
 }

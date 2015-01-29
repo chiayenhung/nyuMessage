@@ -20,8 +20,7 @@
 
     App.prototype.render = function () {
       this.map.generateBuildings();
-      // this.buildingList = React.renderComponent(<BuildingList data={this.buildings.data}/>, document.getElementsByClassName("building_list")[0]);
-      this.sidebar = React.renderComponent(<Sidebar buildings={this.buildings} users={[]}/>, document.getElementsByClassName("sidebar")[0]);
+      this.sidebar = React.renderComponent(<Sidebar buildings={this.buildings} users={[]} user={this.user}/>, document.getElementsByClassName("sidebar")[0]);
       this.setHandlers();
     };
 

@@ -59,7 +59,7 @@
               <option>Users</option>
             </select>
             <BuildingList data={this.state.showBuidling}/>  
-            <UserList data={this.state.users}/>        
+            <UserList data={this.state.users} user={this.props.user}/>        
           </div>
         )
       }

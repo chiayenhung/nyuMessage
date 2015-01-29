@@ -3,7 +3,6 @@ head
   title NYU Message
   link(rel="icon", href="/favicon.ico", type="image/x-icon")
   link(rel="stylesheet", type="text/css", href="css/main.css")
-  block scripts
 body
   nav.navbar.navbar-default
     h1 NYU Building Map
@@ -13,4 +12,5 @@ body
         a(href="/logout") logout
   if user
     .hidden(data-user=user)
+  block scripts
   block content

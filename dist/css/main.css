@@ -15,6 +15,10 @@ nav.navbar {
   color: white;
 }
 
+textarea {
+  resize: none;
+}
+
 .clearfix {
   clear: both;
 }
@@ -140,6 +144,19 @@ nav.navbar {
 .sidebar_list {
   height: calc(100% - 18px);
   overflow: scroll;
+}
+
+.message_container {
+  display: none;
+}
+
+.messages {
+  height: 100px;
+  overflow: scroll;
+}
+
+.message_container .message_input {
+  margin: 0;
 }
 
 .add_post {

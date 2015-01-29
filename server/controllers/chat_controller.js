@@ -8,7 +8,7 @@ function Chat(app) {
 
 Chat.prototype.setup = function () {
   var copy = this;
-  this.app.io.on('connection', function (socket) {
+  this.app.io.on('connection', function (socket) {console.log(socket.rooms)
     socket.on('online', function (user) {
       copy.userOnline(socket.id, user);
       copy.app.io.broadcast("userSignin", copy.users);
