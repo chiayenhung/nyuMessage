@@ -11,6 +11,7 @@
       }
       else
         this.eventMap[eventName] = [handler];
+      return this;
     };
 
     Events.prototype.trigger = function (eventName) {
@@ -20,12 +21,14 @@
           handler.apply(this, args);
         });
       }
+      return this;
     };
 
     Events.prototype.off = function (eventName) {
       if (eventName in this.eventMap) {
         delete this.eventMap[eventName];
       }
+      return this;
     };
 
     return Events;

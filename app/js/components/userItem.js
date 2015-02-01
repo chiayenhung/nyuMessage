@@ -16,18 +16,48 @@
 
       },
 
+      send: function (e) {
+        var $btn = $(e.target),
+            $container = $btn.parents(".user_container"),
+            val = $container.find("textarea").val(),
+            formData;
+        if (val.trim().length != 0) {
+          formData = {
+            'message': val,
+            'caller': this.props.user,
+            'callee': $container.find("a.list-group-item").data("id"),
+            'created': new Date()
+          }
+          $.ajax({
+            url: 'sendMessage',
+            method: 'post',
+            dataType: 'json',
+            data: formData,
+            success: function (response) {
+              $container.find(".messages").append("<li>" + val + "</li>");
+            },
+            error: function (err) {
+              console.error(err);
+            },
+            complete: function () {
+              $container.find("textarea").val("");
+            }
+          });
+        }
+      },
+
       render: function () {
         return (
-          <div>
-            <a href='#' className='list-group-item list-group-item-info clearfix' data-id={this.props.item._id} onClick={this.click}>
+          <div className='user_container'>
+            <a href='#' className='list-group-item list-group-item-info clearfix' data-id={this.props.item.id} onClick={this.click}>
               <span className='left'>{this.props.item.username}</span>
               <span className='badge'>0</span>
             </a>
             <div className='message_container'>
-              <div className='messages bg-info'></div>
+              <ul className='messages bg-info'></ul>
               <div className='input-group message_input'>
                 <textarea className='form-control custom-control' row='3'></textarea>
-                <span className='btn input-group-addon'>Send</span>
+                <span className='btn input-group-addon' onClick={this.send}>Send</span>
               </div>
             </div>
           </div>

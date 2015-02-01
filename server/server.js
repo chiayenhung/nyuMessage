@@ -4,10 +4,11 @@ var passport = require ('passport');
 
 var authController = require ('./controllers/auth_controller');
 var datasetController = require ('./controllers/dataset_controller');
-var Chat = require ('./controllers/chat_controller');
+var socketController = require ('./controllers/socket_controller');
+// var Chat = require ('./controllers/chat_controller');
 
 var app = express();
-var chat;
+// var chatController;
 
 var mongodbURL = (process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/nyuMessage')
 
@@ -40,6 +41,8 @@ app.configure(function(){
   app.use (checkAuthenticate);
   app.use (express.static(__dirname + "/../dist/"));
 
+  app.http().io();
+  socketController.setup(app);
 
   app.get ('/login', authController.login);
   app.get ('/signup', authController.signup);
@@ -55,11 +58,8 @@ app.configure(function(){
 
   app.put ('/update', datasetController.updateDataset);
 
+  app.post ('/sendMessage', socketController.postMessage);
+
 });
-
-app.http().io();
-
-chat = new Chat(app);
-chat.setup(); 
 
 module.exports = app;

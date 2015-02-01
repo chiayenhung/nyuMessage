@@ -8,7 +8,7 @@ function Chat(app) {
 
 Chat.prototype.setup = function () {
   var copy = this;
-  this.app.io.on('connection', function (socket) {console.log(socket.rooms)
+  this.app.io.on('connection', function (socket) {
     socket.on('online', function (user) {
       copy.userOnline(socket.id, user);
       copy.app.io.broadcast("userSignin", copy.users);
@@ -36,6 +36,14 @@ Chat.prototype.userOffline = function (socketId) {
     return user.id == userId;
   });
   copy.users = _.without(copy.users, user);
+};
+
+Chat.prototype.postMessage = function (req, res) {
+  var copy = this;
+  console.log(req.body, copy.userMap, copy.users, this);
+  var calleeSocket = _.invert(copy.userMap)[req.body.callee];
+  console.log(calleeSocket);
+  calleeSocket.emit('message', {message: req.body.message, caller: req.body.caller});
 };
 
 module.exports = Chat;

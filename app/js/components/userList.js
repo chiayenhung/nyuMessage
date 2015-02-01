@@ -8,7 +8,7 @@
             {
               this.props.data.map(function (item) {
                 if (item.id != copy.props.user.id)
-                  return <UserItem item={item}/>
+                  return <UserItem item={item} user={copy.props.user.id}/>
               })
             }
           </div>

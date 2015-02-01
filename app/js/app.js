@@ -32,7 +32,9 @@
 
       copy.chat.on("updateUserList", function (users) {
         copy.sidebar.updateUserList(users);
-      })
+      }).on("chatting", function (data) {
+        console.log(data);
+      });
     };
 
     return App;

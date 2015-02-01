@@ -14,8 +14,11 @@
         copy.trigger("updateUserList", data);
       });
 
-      copy.socket.emit("online", copy.user);
+      copy.socket.on('message', function (data) {
+        copy.trigger("chatting", data);
+      });
 
+      copy.socket.emit("online", copy.user);
 
     };
 
