@@ -14,6 +14,8 @@ var mongodbURL = (process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongod
 
 mongoose.connect (mongodbURL);
 
+process.env.PWD = process.cwd();
+
 var WHITELIST = {
   "/login": true,
   "/signup": true,
@@ -39,7 +41,7 @@ app.configure(function(){
   app.use (passport.initialize());
   app.use (passport.session());
   app.use (checkAuthenticate);
-  app.use (express.static(__dirname + "/../dist/"));
+  app.use (express.static(process.env.PWD + "/dist/"));
 
   app.http().io();
   socketController.setup(app);
