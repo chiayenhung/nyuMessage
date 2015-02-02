@@ -3,7 +3,7 @@
     paths: {
       'jquery': "lib/jquery-1.11.1.min",
       'underscore': "lib/underscore-min",
-      'react': "lib/react-with-addons.min",
+      'react': "lib/react-with-addons",
       'jsx': "lib/jsx",
       'JSXTransformer': "lib/JSXTransformer"
     },

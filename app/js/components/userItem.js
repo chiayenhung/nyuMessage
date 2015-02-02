@@ -1,7 +1,7 @@
 (function () {
-  define(['jquery', 'underscore', 'react', 'jsx!components/messageList'], function ($, _, React, MessageList) {
+  define(['jquery', 'underscore', 'react', 'jsx!components/messageList', 'model/message'], function ($, _, React, MessageList, Message) {
     var UserItem = React.createClass({
-      
+
       click: function (e) {
         e.preventDefault();
         var $btn = $(e.target);
@@ -20,6 +20,7 @@
         var $btn = $(e.target),
             $container = $btn.parents(".user_container"),
             val = $container.find("textarea").val(),
+            copy = this,
             formData;
         if (val.trim().length != 0) {
           formData = {
@@ -34,7 +35,9 @@
             dataType: 'json',
             data: formData,
             success: function (response) {
-              $container.find(".messages").append("<li>" + val + "</li>");
+              var message = new Message(response);
+              copy.props.item.messages.data.push(message);
+              copy.forceUpdate();
             },
             error: function (err) {
               console.error(err);
@@ -54,7 +57,6 @@
               <span className='badge'>0</span>
             </a>
             <div className='message_container'>
-              <ul className='messages bg-info'></ul>
               <MessageList messages={this.props.item.messages} />
               <div className='input-group message_input'>
                 <textarea className='form-control custom-control' row='3'></textarea>

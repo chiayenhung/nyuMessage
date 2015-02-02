@@ -51,10 +51,12 @@
       },
 
       addMessage: function (data) {
-        var user = _.find(this.state.users.data, function (user) { return user.id == data.callee;}),
-            message = new Message(data);
+        var user = _.find(this.state.users.data, function (user) { return user.id == data.caller;}),
+            message = new Message(data),
+            clone;
         user.messages.data.push(message);
-        this.setState({users: this.state.users});
+        clone = _.clone(this.state.users)
+        this.setState({users: clone});
       },
 
       render: function () {
