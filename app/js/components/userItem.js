@@ -1,5 +1,5 @@
 (function () {
-  define(['jquery', 'underscore', 'react'], function ($, _, React) {
+  define(['jquery', 'underscore', 'react', 'jsx!components/messageList'], function ($, _, React, MessageList) {
     var UserItem = React.createClass({
       
       click: function (e) {
@@ -55,6 +55,7 @@
             </a>
             <div className='message_container'>
               <ul className='messages bg-info'></ul>
+              <MessageList messages={this.props.item.messages} />
               <div className='input-group message_input'>
                 <textarea className='form-control custom-control' row='3'></textarea>
                 <span className='btn input-group-addon' onClick={this.send}>Send</span>

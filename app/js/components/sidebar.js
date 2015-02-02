@@ -51,6 +51,11 @@
         this.setState({users: users});
       },
 
+      addMessage: function (data) {
+        var user = _.find(this.state.users, function (user) { return user.id == data.callee;});
+        user.messages.append(data);
+      },
+
       render: function () {
         return (
           <div className="building_list_container">

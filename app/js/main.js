@@ -16,8 +16,10 @@
   });
 
   requirejs(['jsx!app', 'model/buildings'], function (App, Buildings) {
-    var buildings = new Buildings();
-    buildings.fetch(function (buildings) {
+    var buildings = new Buildings({
+      url: 'getDatasets'
+    });
+    buildings.fetch({}, function (buildings) {
       app = new App(buildings);
       app.render();
     })

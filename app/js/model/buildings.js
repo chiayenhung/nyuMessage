@@ -1,41 +1,44 @@
 (function () {
-  define(['jquery', 'underscore', 'model/building'], function ($, _, Building) {
+  define(['jquery', 'underscore', 'model/baseCollection', 'model/building'], function ($, _, Collection, Building) {
 
-    function Buildings() {
-      this.data = [];
+    function Buildings(options) {
+      Collection.call(this, options);
+      this.model = Building;
     }
 
-    Buildings.prototype.fetch = function (cb) {
-      var copy = this;
-      $.ajax({
-        url: 'getDatasets',
-        method: 'get',
-        success: function(response) {
-          copy.populate(response, cb);
-        },
-        error: function(err) {
-          console.error(err);
-          cb();
-        }
-      });
-    };
+    Buildings.prototype = new Collection({});
 
-    Buildings.prototype.populate = function (data, cb) {
-      var copy = this,
-          building;
-      copy.data = [];
-      data.forEach(function(item, index){
-        building = new Building(item);
-        copy.data.push(building);
-        if (index >= data.length - 1) {
-          cb(copy);
-        }
-      });
-    };
+    // Buildings.prototype.fetch = function (cb) {
+    //   var copy = this;
+    //   $.ajax({
+    //     url: 'getDatasets',
+    //     method: 'get',
+    //     success: function(response) {
+    //       copy.populate(response, cb);
+    //     },
+    //     error: function(err) {
+    //       console.error(err);
+    //       cb();
+    //     }
+    //   });
+    // };
 
-    Buildings.prototype.findById = function (id) {
-      return _.find(this.data, function(building){return building.id == id;});
-    };
+    // Buildings.prototype.populate = function (data, cb) {
+    //   var copy = this,
+    //       building;
+    //   copy.data = [];
+    //   data.forEach(function(item, index){
+    //     building = new Building(item);
+    //     copy.data.push(building);
+    //     if (index >= data.length - 1) {
+    //       cb(copy);
+    //     }
+    //   });
+    // };
+
+    // Buildings.prototype.findById = function (id) {
+    //   return _.find(this.data, function(building){return building.id == id;});
+    // };
 
     Buildings.prototype.hiding = function (bounds) {
       var copy = this;
@@ -50,10 +53,10 @@
       return result;
     };
 
-    Buildings.prototype.sortBy = function (options) {
-      this.data = _.sortBy(this.data, function(building){ return building.likes;});
-      return this;
-    };
+    // Buildings.prototype.sortBy = function (options) {
+    //   this.data = _.sortBy(this.data, function(building){ return building.likes;});
+    //   return this;
+    // };
 
     return Buildings;
 

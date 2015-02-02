@@ -34,6 +34,7 @@
         copy.sidebar.updateUserList(users);
       }).on("chatting", function (data) {
         console.log(data);
+        copy.sidebar.addMessage(data);
       });
     };
 
