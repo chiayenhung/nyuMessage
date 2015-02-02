@@ -40,7 +40,7 @@ app.configure(function(){
   app.use (passport.session());
   app.use (checkAuthenticate);
   app.use (express.static(__dirname + "/../dist/"));
-
+  console.log(__dirname);
   app.http().io();
   socketController.setup(app);
 
