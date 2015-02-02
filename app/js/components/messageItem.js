@@ -1,7 +1,7 @@
 (function () {
   define(['react'], function (React) {
     var MessageItem = React.createClass({
-      render: function () {
+      render: function () {console.log(this.props)
         return (
           <li>
             <span>{this.props.message.message}</span>

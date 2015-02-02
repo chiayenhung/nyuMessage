@@ -5,7 +5,7 @@
         return (
           <ul>
             {
-              this.props.messages.map(function (message) {
+              this.props.messages.data.map(function (message) {
                 return <MessageItem message={message} />
               })
             }

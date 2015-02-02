@@ -1,17 +1,16 @@
 (function () {
-  define(['jquery', 'underscore', 'react', 'jsx!components/buildingList', 'jsx!components/userList'], function ($, _, React, BuildingList, UserList) {
+  define(['jquery', 'underscore', 'react', 'jsx!components/buildingList', 'jsx!components/userList', 'model/message'], function ($, _, React, BuildingList, UserList, Message) {
     var Sidebar = React.createClass({
       getInitialState: function () {
         return {
           buildings: null,
           showBuidling: null,
-          users: []
+          users: {data:[]}
         };
       },
 
       componentWillMount: function () {
         this.state.buildings = this.state.showBuidling = this.props.buildings.data;
-        this.state.users = this.props.users || [];
       },
 
       componentDidMount: function () {
@@ -52,8 +51,10 @@
       },
 
       addMessage: function (data) {
-        var user = _.find(this.state.users, function (user) { return user.id == data.callee;});
-        user.messages.append(data);
+        var user = _.find(this.state.users.data, function (user) { return user.id == data.callee;}),
+            message = new Message(data);
+        user.messages.data.push(message);
+        this.setState({users: this.state.users});
       },
 
       render: function () {
@@ -64,7 +65,7 @@
               <option>Users</option>
             </select>
             <BuildingList data={this.state.showBuidling}/>  
-            <UserList data={this.state.users} user={this.props.user}/>        
+            <UserList users={this.state.users} user={this.props.user}/>        
           </div>
         )
       }

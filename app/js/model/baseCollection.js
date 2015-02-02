@@ -1,7 +1,7 @@
 (function () {
   define(['jquery', 'underscore', 'model/baseModel'], function ($, _, BaseModel) {
-    function Collection(options) {
-      this.url = options.url;
+    function Collection() {
+      this.url = 'url';
       this.model = BaseModel;
       this.data = [];
     }

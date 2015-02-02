@@ -6,7 +6,7 @@
         return (
           <div className="sidebar_list user_list list-group">
             {
-              this.props.data.map(function (item) {
+              this.props.users.data.map(function (item) {
                 if (item.id != copy.props.user.id)
                   return <UserItem item={item} user={copy.props.user.id}/>
               })
