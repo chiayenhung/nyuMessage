@@ -2,7 +2,7 @@
   define(['utils/events'], function (Events) {
 
     function Chat (data) {
-      this.socket = io.connect('https://nyumessage.herokuapp.com/',{secure: true, port:8080});
+      this.socket = io.connect('https://nyumessage.herokuapp.com/',{secure: true});
       this.user = data.user;
     }
 
