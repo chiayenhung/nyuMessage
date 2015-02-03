@@ -150,6 +150,10 @@ textarea {
   height: 100%;
 }
 
+.building_list_container select {
+  width: 100%;
+}
+
 .sidebar_list {
   height: calc(100% - 18px);
   overflow: scroll;

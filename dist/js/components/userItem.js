@@ -23,6 +23,42 @@
 
       },
 
+      submitData: function (val) {
+        var formData = {
+            'message': val,
+            'caller': this.props.user,
+            'callee': $(this.getDOMNode()).find("a.list-group-item").data("id"),
+            'created': new Date()
+            },
+            copy = this;
+        $.ajax({
+          url: 'sendMessage',
+          method: 'post',
+          dataType: 'json',
+          data: formData,
+          success: function (response) {
+            var message = new Message(response);
+            copy.props.item.messages.data.push(message);
+            copy.forceUpdate();
+          },
+          error: function (err) {
+            console.error(err);
+          },
+          complete: function () {
+            $(copy.getDOMNode()).find("textarea").val("");
+          }
+        });
+      },
+
+      keyup: function (e) {
+        var val;
+        if (!e.shiftKey && e.keyCode == 13) {
+          val = e.target.value;
+          if (val.length > 0)
+            this.submitData(val);
+        }
+      },
+
       send: function (e) {
         var $btn = $(e.target),
             $container = $btn.parents(".user_container"),
@@ -30,29 +66,30 @@
             copy = this,
             formData;
         if (val.trim().length != 0) {
-          formData = {
-            'message': val,
-            'caller': this.props.user,
-            'callee': $container.find("a.list-group-item").data("id"),
-            'created': new Date()
-          }
-          $.ajax({
-            url: 'sendMessage',
-            method: 'post',
-            dataType: 'json',
-            data: formData,
-            success: function (response) {
-              var message = new Message(response);
-              copy.props.item.messages.data.push(message);
-              copy.forceUpdate();
-            },
-            error: function (err) {
-              console.error(err);
-            },
-            complete: function () {
-              $container.find("textarea").val("");
-            }
-          });
+          copy.submitData(val);
+          // formData = {
+          //   'message': val,
+          //   'caller': this.props.user,
+          //   'callee': $container.find("a.list-group-item").data("id"),
+          //   'created': new Date()
+          // }
+          // $.ajax({
+          //   url: 'sendMessage',
+          //   method: 'post',
+          //   dataType: 'json',
+          //   data: formData,
+          //   success: function (response) {
+          //     var message = new Message(response);
+          //     copy.props.item.messages.data.push(message);
+          //     copy.forceUpdate();
+          //   },
+          //   error: function (err) {
+          //     console.error(err);
+          //   },
+          //   complete: function () {
+          //     $container.find("textarea").val("");
+          //   }
+          // });
         }
       },
 
@@ -66,7 +103,7 @@
             <div className='message_container'>
               <MessageList messages={this.props.item.messages} user={this.props.user}/>
               <div className='input-group message_input'>
-                <textarea className='form-control custom-control' row='3'></textarea>
+                <textarea className='form-control custom-control' row='3' onKeyUp={this.keyup}></textarea>
                 <span className='btn input-group-addon' onClick={this.send}>Send</span>
               </div>
             </div>

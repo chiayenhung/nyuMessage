@@ -43,7 +43,7 @@ socketController.userOffline = function (socketId) {
   users = _.without(users, user);
 };
 
-socketController.postMessage = function (req, res) {console.log(req.body)
+socketController.postMessage = function (req, res) {
   var message = new Message(req.body);
   message.save(function (err, m) {
     if (err)
