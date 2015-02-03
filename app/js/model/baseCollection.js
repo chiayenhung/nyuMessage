@@ -25,7 +25,7 @@
     Collection.prototype.populate = function (data, cb) {
       var copy = this,
           model;
-      copy.data = [];
+      // copy.data = [];
       data.forEach(function(item, index){
         model = new copy.model(item);
         copy.data.push(model);

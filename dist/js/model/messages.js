@@ -4,7 +4,7 @@
       Collection.call(this, options);
       this.url = 'messages';
       this.model = Message;
-      this.offest = 0;
+      this.offset = 0;
       this.ended = false;
     }
 
@@ -12,19 +12,20 @@
 
     Messages.prototype.load = function (options, cb) {
       var copy = this;
-      if (copy.ended)
+      if (copy.ended) {
+        cb('ended');
         return;
-      _.extend(options, {offest: this.offest});
+      }
+      _.extend(options, {offset: this.offset});
 
       copy.fetch(options, function (err, messages) {
         if (err) {
           if (err.status == 404)
             copy.ended = true;
-          else
-            cb(err);
+          cb(err);
         }
         else {
-          copy.offest += 1;
+          copy.offset += 1;
           copy.sortBy({key: 'created'});
           cb(null, messages);
         }

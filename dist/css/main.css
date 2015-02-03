@@ -172,6 +172,10 @@ textarea {
   color: gray;
 }
 
+.messages .loader {
+  text-align: center;
+}
+
 .message_container .message_input {
   margin: 0;
 }
