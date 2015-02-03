@@ -21,8 +21,8 @@
         var bounds = {
           'latLarge': enbounds.getNorthEast().k,
           'latSmall': enbounds.getSouthWest().k,
-          'longLarge': enbounds.getNorthEast().A,
-          'longSmall': enbounds.getSouthWest().A
+          'longLarge': enbounds.getNorthEast().D,
+          'longSmall': enbounds.getSouthWest().D
         }
         return bounds;
       },

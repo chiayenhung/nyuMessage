@@ -104,8 +104,16 @@
 }
 
 .messages {
-  height: 100px;
+  height: 200px;
   overflow: scroll;
+}
+
+.messages li {
+  margin: 5px 0;
+}
+
+.messages .created {
+  color: gray;
 }
 
 .message_container .message_input {

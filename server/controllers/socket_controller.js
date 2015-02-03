@@ -1,4 +1,5 @@
 var _ = require('underscore');
+var Message = require('../models/message');
 
 var socketController = {};
 var users = [];
@@ -42,10 +43,19 @@ socketController.userOffline = function (socketId) {
   users = _.without(users, user);
 };
 
-socketController.postMessage = function (req, res) {
-  var copy = this;
-  req.io.route('message');
-  res.send(req.body);
+socketController.postMessage = function (req, res) {console.log(req.body)
+  var message = new Message(req.body);
+  message.save(function (err, m) {
+    if (err)
+      res.send(500, err);
+    else if (!m) {
+      res.send(400, 'Message not found');
+    }
+    else {
+      req.io.route('message');
+      res.send(m);      
+    }
+  })
 };
 
 module.exports = socketController;

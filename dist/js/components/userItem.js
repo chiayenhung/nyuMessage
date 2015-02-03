@@ -1,15 +1,22 @@
 (function () {
   define(['jquery', 'underscore', 'react', 'jsx!components/messageList', 'model/message'], function ($, _, React, MessageList, Message) {
     var UserItem = React.createClass({
+      loaded: false,
 
       click: function (e) {
         e.preventDefault();
-        var $btn = $(e.target);
+        var copy = this,
+            $btn = $(e.target);
         if ($btn.hasClass("active")) {
           $btn.removeClass("active");
           $btn.siblings(".message_container").slideUp();
         } 
         else {
+          if (!this.loaded)
+            this.props.item.messages.load({caller: this.props.user, callee: $btn.data("id")}, function (err) {
+              copy.loaded = true;
+              copy.forceUpdate();
+            });
           $btn.addClass("active");
           $btn.siblings(".message_container").slideDown();
         }
@@ -57,7 +64,7 @@
               <span className='badge'>0</span>
             </a>
             <div className='message_container'>
-              <MessageList messages={this.props.item.messages} />
+              <MessageList messages={this.props.item.messages} user={this.props.user}/>
               <div className='input-group message_input'>
                 <textarea className='form-control custom-control' row='3'></textarea>
                 <span className='btn input-group-addon' onClick={this.send}>Send</span>

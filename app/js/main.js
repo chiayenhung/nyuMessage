@@ -17,7 +17,7 @@
 
   requirejs(['jsx!app', 'model/buildings'], function (App, Buildings) {
     var buildings = new Buildings();
-    buildings.fetch({}, function (buildings) {
+    buildings.fetch({}, function (err, buildings) {
       app = new App(buildings);
       app.render();
     })

@@ -11,13 +11,13 @@
       $.ajax({
         url: copy.url,
         method: 'get',
-        params: options,
+        data: options,
         success: function(response) {
           copy.populate(response, cb);
         },
         error: function(err) {
           console.error(err);
-          cb();
+          cb(err);
         }
       });
     };
@@ -30,7 +30,7 @@
         model = new copy.model(item);
         copy.data.push(model);
         if (index >= data.length - 1) {
-          cb(copy);
+          cb(null, copy);
         }
       });
     };
@@ -40,7 +40,7 @@
     };
 
     Collection.prototype.sortBy = function (options) {
-      this.data = _.sortBy(this.data, function(building){ return building[options.key];});
+      this.data = _.sortBy(this.data, function(model){ return model[options.key];});
       return this;
     };
 
