@@ -6,7 +6,7 @@
       // this.socket = io.connect('http://localhost');
       this.user = data.user;
     }
-
+    
     Chat.prototype = new Events();
 
     Chat.prototype.initialize = function () {
