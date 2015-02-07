@@ -56,14 +56,16 @@
           animation: google.maps.Animation.DROP,
           map: map,
           title: buildingname,
-          icon: buildingimg
+          icon: buildingimg,
+          id: building.id
         });
 
         infoWindow = new InfoWindow({
           marker: marker, 
           map: map, 
           model: building,
-          user: copy.user
+          user: copy.user,
+          id: building.id
         });
 
         _.extend(infoWindow, new Events());

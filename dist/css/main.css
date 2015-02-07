@@ -13,6 +13,7 @@ nav.navbar {
   background: rgb(68, 0, 124);
   border: 0;
   color: white;
+  border-radius: 0;
 }
 
 ul {
@@ -54,6 +55,9 @@ textarea {
 .starRate a span {position:absolute; left:-300px;}
 .starRate a:hover span {left:90px; width:100%;}
 
+.logout {
+  margin: 10px;
+}
 
 #map-canvas {
   max-width: 80%;

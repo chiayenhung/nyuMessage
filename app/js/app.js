@@ -6,6 +6,7 @@
       this.buildings = buildings;
       this.user = new User();
       this.user.getDataFromDom($("[data-user]").data("user"));
+      $("[data-user]").remove();
       this.map = new GMap({
         buildings: this.buildings,
         user: this.user
